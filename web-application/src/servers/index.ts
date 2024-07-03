@@ -1,20 +1,43 @@
 import express, { Application, Request, Response } from 'express';
-import exampleRoutes from '../routes/exampleRoutes';
+import { ApolloServer } from '@apollo/server';
+import { typeDefinitions } from '../graphql/schema';
+import { resolvers } from '../graphql/resolvers';
+import http from 'http';
+import cors from 'cors';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import { expressMiddleware } from '@apollo/server/express4';
 
-export const initServer = () => {
 
-    const app: Application = express();
+
+interface ApplicationContext {
+    token?: string;
+}
+
+export const initServer = async () => {
+
+    const expressApplication: Application = express();
     const port: number = 3000;
 
-    app.use(express.json());
-    app.use('/api', exampleRoutes);
+    const httpServer = http.createServer(expressApplication);
 
-    app.get('/', (req: Request, res: Response) => {
-        res.send('Hello World!');
+    const apolloServer = new ApolloServer<ApplicationContext>({
+        typeDefs: typeDefinitions,
+        resolvers: resolvers,
+        plugins: [ApolloServerPluginDrainHttpServer({ httpServer }) ]
     });
 
-    app.listen(port, () => {
-        console.log(`Server is running on http://localhost:${port}`);
-    });
+    await apolloServer.start();
+
+    expressApplication.use(
+        '/api/graphql',
+        cors<cors.CorsRequest>(),
+        express.json(),
+        expressMiddleware(apolloServer, {
+            context: async ({ req }) => ({ token: req.headers.token }),
+          }),
+    );
+
+    await new Promise<void>((resolve) => httpServer.listen({ port: port }, resolve));
+    console.log(`🚀 Server ready at http://localhost:${port}/`);
 
 }
