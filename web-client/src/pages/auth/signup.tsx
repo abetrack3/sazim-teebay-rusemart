@@ -3,7 +3,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { createUser, userExistsByEmail } from '../../api/user.api';
-import { global } from "@apollo/client/utilities/globals";
 
 const signupValidationSchema = yup.object({
 
@@ -72,7 +71,7 @@ const SignupPage = () => {
                     validationSchema={signupValidationSchema}
                     onSubmit={async (values) => {
                         console.log(values);
-                        // await createUser(values.email, values.firstName, values.lastName, values.address, values.password);
+                        await createUser(values.email, values.firstName, values.lastName, values.address, values.password);
                         navigate('/login');
                     }}
                 >
