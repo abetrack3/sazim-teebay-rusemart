@@ -1,17 +1,9 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import GET_USER_EXISTS_BY_EMAIL from "../../graphql/queries/user.queries";
-import apolloClient from "../../graphql/client";
-
-const userExistsByEmail = async (email: string) => {
-    const { data } = await apolloClient.query({
-        query: GET_USER_EXISTS_BY_EMAIL,
-        variables: { email },
-    });
-    return data.getUserExistsByEmail;
-};
+import { createUser, userExistsByEmail } from '../../api/user.api';
+import { global } from "@apollo/client/utilities/globals";
 
 const signupValidationSchema = yup.object({
 
@@ -55,6 +47,8 @@ const signupValidationSchema = yup.object({
 
 const SignupPage = () => {
 
+    const navigate = useNavigate();
+
     return (
         <div className="flex flex-col h-full justify-center items-center">
             <h1 className="text-3xl mb-2">SIGN UP</h1>
@@ -76,9 +70,10 @@ const SignupPage = () => {
                         retypePassword: '',
                     }}
                     validationSchema={signupValidationSchema}
-                    onSubmit={(values) => {
-                        // Handle form submission
+                    onSubmit={async (values) => {
                         console.log(values);
+                        // await createUser(values.email, values.firstName, values.lastName, values.address, values.password);
+                        navigate('/login');
                     }}
                 >
                     {({ isSubmitting }) => (
