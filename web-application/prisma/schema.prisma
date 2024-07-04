@@ -18,16 +18,10 @@ model User {
     createdAt      DateTime @default(now())
     updatedAt      DateTime @updatedAt
     email          String   @unique
-    role           Role
     firstName      String
     lastName       String
     address        String
-    hashedPassword String
-}
-
-enum Role {
-    ADMIN
-    USER
+    password String
 }
 
 model Product {

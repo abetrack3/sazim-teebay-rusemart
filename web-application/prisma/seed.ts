@@ -1,5 +1,5 @@
-import { PrismaClient, Role } from "@prisma/client";
-import { adminUser } from "../data/seedData";
+import { PrismaClient } from "@prisma/client";
+import { adminUser } from "../data/seed.data";
 
 const prisma: PrismaClient = new PrismaClient();
 
@@ -8,11 +8,10 @@ const main = async () => {
     await prisma.user.create({
         data: {
             email: adminUser.email,
-            role: Role.ADMIN,
             firstName: adminUser.firstName,
             lastName: adminUser.lastName,
             address: adminUser.address,
-            hashedPassword: adminUser.hashedPassword,
+            password: adminUser.password,
         },
     });
 }
@@ -20,7 +19,6 @@ const main = async () => {
 main()
     .catch(e => {
         console.error(e);
-        process.exit(1);
     })
     .finally(async () => {
         await prisma.$disconnect();

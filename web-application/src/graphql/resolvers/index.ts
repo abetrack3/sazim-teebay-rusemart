@@ -1,11 +1,16 @@
-import { getUserExistsByEmail, getUsers } from "../../services/user.service";
+import { User } from "@prisma/client";
+import { createUser, getUserExistsByEmail } from "../../services/user.service";
 
 export const resolvers = {
     Query: {
 
-        getUsers: getUsers,
+        getUserExistsByEmail: async (_: never, args: {email: string}) => await getUserExistsByEmail(args.email),
 
-        getUserExistsByEmail: async (_parent: never, args: {email: string}) => await getUserExistsByEmail(args.email),
+    },
 
-    }
+    Mutation: {
+        
+        createUser: async (_: never, user: User) => await createUser(user),
+
+    },
 };
