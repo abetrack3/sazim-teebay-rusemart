@@ -15,7 +15,6 @@ type User {
     firstName: String!
     lastName: String!
     address: String!
-    hashedPassword: String!
 }
 
 type Query {
@@ -23,6 +22,8 @@ type Query {
     getUser(id: Int!): User
     
     getUsers: [User]
+
+    getUserExistsByEmail(email: String): Boolean
 }
 
 type Mutation {
@@ -33,7 +34,6 @@ type Mutation {
       firstName: String!,
       lastName: String!,
       address: String!,
-      hashedPassword: String!
     ): User
     
     updateUser(
@@ -43,10 +43,8 @@ type Mutation {
       firstName: String,
       lastName: String,
       address: String,
-      hashedPassword: String
     ): User
     
     deleteUser(id: Int!): Boolean
 }
-
 `;
