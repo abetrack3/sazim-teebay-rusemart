@@ -2,7 +2,8 @@ import { Box, Button, TextField } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import { createUser } from '../../api/user.api';
-import signupValidationSchema from "../../components/forms/user/signup.form.schema";
+import signupValidationSchema from "../../validators/signup.form.validation.schema";
+
 
 
 const SignupPage = () => {

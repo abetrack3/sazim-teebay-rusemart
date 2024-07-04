@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { userExistsByEmail } from "../../../api/user.api";
+import { userExistsByEmail } from "../api/user.api";
 
 const signupValidationSchema = yup.object({
 
