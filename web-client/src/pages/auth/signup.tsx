@@ -33,10 +33,10 @@ const signupValidationSchema = yup.object({
         .string()
         .label('Type your password')
         .min(2, 'Password should be of minimum 8 characters length')
-        .required('Password is required'),
-        // .matches(/[0-9]/, 'Password must contain at least one number')
-        // .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
-        // .matches(/[@$!%*?&#]/, 'Password must contain at least one symbol'),
+        .required('Password is required')
+        .matches(/[0-9]/, 'Password must contain at least one number')
+        .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
+        .matches(/[@$!%*?&#]/, 'Password must contain at least one symbol'),
     
     retypePassword: yup
         .string()
@@ -45,12 +45,6 @@ const signupValidationSchema = yup.object({
 });
 
 const SignupPage = () => {
-
-    return (
-        <>
-            <h1>This is the signup page</h1>
-        </>
-    );
 
     return (
         <div className="flex flex-col h-full justify-center items-center">
