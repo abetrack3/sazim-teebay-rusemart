@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { adminUser } from "../data/seed.data";
+import { seedUser } from "../data/seed.data";
 
 const prisma: PrismaClient = new PrismaClient();
 
@@ -7,11 +7,11 @@ const main = async () => {
 
     await prisma.user.create({
         data: {
-            email: adminUser.email,
-            firstName: adminUser.firstName,
-            lastName: adminUser.lastName,
-            address: adminUser.address,
-            password: adminUser.password,
+            email: seedUser.email,
+            firstName: seedUser.firstName,
+            lastName: seedUser.lastName,
+            address: seedUser.address,
+            password: seedUser.password,
         },
     });
 }

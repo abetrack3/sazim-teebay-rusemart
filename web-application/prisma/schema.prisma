@@ -14,14 +14,15 @@ datasource db {
 }
 
 model User {
-    id             Int      @id @default(autoincrement())
-    createdAt      DateTime @default(now())
-    updatedAt      DateTime @updatedAt
-    email          String   @unique
-    firstName      String
-    lastName       String
-    address        String
-    password String
+    id        Int       @id @default(autoincrement())
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    email     String    @unique
+    firstName String
+    lastName  String
+    address   String
+    password  String
+    products  Product[]
 }
 
 model Product {
@@ -36,4 +37,6 @@ model Product {
     purchaseOption String
     rentPrice      Decimal
     rentOption     String
+    ownerId        Int
+    owner          User     @relation(fields: [ownerId], references: [id])
 }
