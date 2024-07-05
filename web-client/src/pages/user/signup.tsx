@@ -1,7 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
-import { createUser } from '../../api/user.api';
+import { createUser } from '../../services/user.service';
 import signupValidationSchema from "../../validators/signup.form.validation.schema";
 
 
