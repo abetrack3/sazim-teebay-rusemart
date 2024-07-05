@@ -10,8 +10,8 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom'
 import Error404Page from './pages/404.tsx'
-import LoginPage from './pages/auth/login.tsx'
-import SignupPage from './pages/auth/signup.tsx'
+import LoginPage from './pages/user/login.tsx'
+import SignupPage from './pages/user/signup.tsx'
 import HomePage from './pages/home/index.tsx'
 
 const routes: RouteObject[] = [

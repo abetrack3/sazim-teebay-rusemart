@@ -2,7 +2,9 @@ const Error404Page = () => {
 
     return (
         <>
-            <h1>This is the fallback error page</h1>
+            <div className="flex flex-col h-full justify-center items-center">
+                <h1 className="text-3xl mb-2">SOMETHING WENT WRONG</h1>
+            </div>
         </>
     );
 

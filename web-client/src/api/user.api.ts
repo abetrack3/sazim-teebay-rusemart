@@ -22,7 +22,5 @@ export const createUser = async (
         variables: { email, firstName, lastName, address, password }
     })
 
-    console.log(data);
-
     return data.createUser;
 };

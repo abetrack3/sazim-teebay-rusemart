@@ -2,11 +2,30 @@ import { Box, Button, TextField } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import loginValidationSchema from "../../validators/login.form.validation.schema";
+import { getAuthToken } from "../../services/auth.service";
+import { useState } from "react";
 
 
 const LoginPage = () => {
 
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');
+
+
+    const handleLogin = async (email: string, password: string) => {
+
+        const token: string = await getAuthToken(email, password);
+
+        if (token === '') {
+            setErrorMessage('Invalid Email or password');
+            return;
+        }
+
+        localStorage.setItem('token', token);
+        setErrorMessage('');
+        navigate('/');
+
+    };
 
     return (
         <div className="flex flex-col h-full justify-center items-center">
@@ -25,11 +44,7 @@ const LoginPage = () => {
                         password: '',
                     }}
                     validationSchema={loginValidationSchema}
-                    onSubmit={(values) => {
-                        console.log(values);
-                        // await createUser(values.email, values.firstName, values.lastName, values.address, values.password);
-                        navigate('/');
-                    }}
+                    onSubmit={(values, { setSubmitting }) => handleLogin(values.email, values.password).finally(() => setSubmitting(false))}
                 >
                     {({ isSubmitting }) => (
                         <Form className="flex flex-col gap-4">
@@ -39,6 +54,8 @@ const LoginPage = () => {
 
                             <Field name="password" as={TextField} label="Password" type="password" fullWidth />
                             <ErrorMessage name="password" component="div" />
+
+                            {errorMessage && <div className="text-red-500">{errorMessage}</div>}
 
                             <Button type="submit" disabled={isSubmitting} variant="contained" color="primary">
                                 Log in
