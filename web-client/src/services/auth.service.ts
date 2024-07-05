@@ -10,8 +10,6 @@ export const getAuthToken = async (email: string, password: string) => {
 
     const token: string = data.authToken ?? '';
 
-    localStorage.setItem('token', token);
-
     return token;
 
 }
