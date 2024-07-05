@@ -11,6 +11,22 @@ type User {
     password: String!
 }
 
+type Product {
+    id: Int!
+    createdAt: String!
+    updatedAt: String!
+    name: String!
+    title: String!
+    categories: [String]
+    description: String
+    purchasePrice: Float!
+    purchaseOption: String!
+    rentPrice: Float!
+    rentOption: String!
+    ownerId: Int!
+    owner: User!
+}
+
 type Query {
 
     getUserExistsByEmail(email: String): Boolean
@@ -35,6 +51,18 @@ type Mutation {
     ): User
 
     authToken(email: String!, password: String!): String
+
+	createProduct(
+		name: String!,
+		title: String!,
+		categories: [String],
+		description: String,
+		purchasePrice: Float!,
+		purchaseOption: String!,
+		rentPrice: Float!,
+		rentOption: String!,
+		ownerId: Int!,
+	): Product
     
 }
 `;
