@@ -33,6 +33,8 @@ type Mutation {
 		lastName: String,
 		address: String,
     ): User
+
+    authToken(email: String!, password: String!): String
     
 }
 `;
