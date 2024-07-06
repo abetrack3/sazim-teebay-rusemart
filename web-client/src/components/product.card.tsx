@@ -1,15 +1,28 @@
 import { Card, CardActions, CardContent, IconButton, Typography } from '@mui/material';
 import { DeleteTwoTone } from "@mui/icons-material";
 import { Product } from '../shared/types/product.types';
+import ConfirmationDialog from './confirmation.dialog';
+import { useState } from 'react';
 
-const ProductCard: React.FC<{product: Product}> = ({ product }) => {
+const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+
+    const [open, setOpen] = useState(false);
+
+    const handleDeleteConfirmation = () => {
+        setOpen(false);
+    }
 
     return (
         <>
             <Card className='m-3 w-full relative'>
                 <CardContent className='flex flex-col gap-4'>
                     <CardActions className='absolute top-4 right-4'>
-                        <IconButton color='error'>< DeleteTwoTone/></IconButton>
+                        <IconButton
+                            color='error'
+                            onClick={() => setOpen(true)}
+                        >
+                            < DeleteTwoTone />
+                        </IconButton>
                     </CardActions>
                     <Typography variant="h2" component="div">
                         {product.name}
@@ -28,6 +41,15 @@ const ProductCard: React.FC<{product: Product}> = ({ product }) => {
                     </Typography>
                 </CardContent>
             </Card>
+            <ConfirmationDialog
+                open={open}
+                prompt={`Are you sure you want to delete ${product.name}?`}
+                cancelText={'Cancel'}
+                confirmText={'Yes'}
+                onCancel={() => setOpen(false)}
+                onConfirm={handleDeleteConfirmation}
+            >
+            </ConfirmationDialog>
         </>
     );
 };
