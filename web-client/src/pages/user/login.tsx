@@ -23,7 +23,7 @@ const LoginPage = () => {
 
         localStorage.setItem('token', token);
         setErrorMessage('');
-        navigate('/');
+        navigate('/my-product');
 
     };
 
