@@ -24,12 +24,13 @@ type Product {
     rentPrice: Float!
     rentOption: String!
     ownerId: Int!
-    owner: User!
+    owner: User
 }
 
 type Query {
 
     getUserExistsByEmail(email: String): Boolean
+    getAllUserProducts: [Product]
 	
 }
 

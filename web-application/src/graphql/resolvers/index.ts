@@ -1,4 +1,4 @@
-import { createProduct } from './../../services/product.service';
+import { createProduct, getAllProductsByOwnerId } from './../../services/product.service';
 import { Product, User } from "@prisma/client";
 import { createUser, getUserExistsByEmail } from "../../services/user.service";
 import { getAuthToken } from "../../services/auth.service";
@@ -11,6 +11,9 @@ export const resolvers = {
         // public apis
         getUserExistsByEmail: async (_: never, args: {email: string}) => await getUserExistsByEmail(args.email),
 
+        // secured apis
+        getAllUserProducts: async(_: never, __: never, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getAllProductsByOwnerId(context.authenticatedUser?.id as number)),
+
     },
 
     Mutation: {
@@ -21,6 +24,6 @@ export const resolvers = {
 
         // secured apis
         createProduct: async (_: never, product: Product, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => createProduct(product)),
-
+        
     },
 };
