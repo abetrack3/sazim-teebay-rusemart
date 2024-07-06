@@ -4,11 +4,12 @@ import { Product } from '../shared/types/product.types';
 import ConfirmationDialog from './confirmation.dialog';
 import { useState } from 'react';
 
-const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+const ProductCard: React.FC<{ product: Product, callbackForDelete: () => void }> = ({ product, callbackForDelete }) => {
 
     const [open, setOpen] = useState(false);
 
-    const handleDeleteConfirmation = () => {
+    const handleDeleteConfirmation = async () => {
+        await callbackForDelete();
         setOpen(false);
     }
 

@@ -13,3 +13,5 @@ export const getAuthToken = async (email: string, password: string) => {
     return token;
 
 }
+
+export const isLoggedIn = () => localStorage.getItem('token') !== null;

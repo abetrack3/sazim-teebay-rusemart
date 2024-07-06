@@ -30,7 +30,6 @@ const SignupPage = () => {
                     }}
                     validationSchema={signupValidationSchema}
                     onSubmit={async (values) => {
-                        console.log(values);
                         await createUser(values.email, values.firstName, values.lastName, values.address, values.password);
                         navigate('/login');
                     }}
