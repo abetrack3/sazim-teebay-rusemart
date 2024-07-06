@@ -1,3 +1,4 @@
+import { seedProduct } from './../data/seed.data';
 import { PrismaClient } from "@prisma/client";
 import { seedUser } from "../data/seed.data";
 
@@ -5,15 +6,9 @@ const prisma: PrismaClient = new PrismaClient();
 
 const main = async () => {
 
-    await prisma.user.create({
-        data: {
-            email: seedUser.email,
-            firstName: seedUser.firstName,
-            lastName: seedUser.lastName,
-            address: seedUser.address,
-            password: seedUser.password,
-        },
-    });
+    await prisma.user.create({ data: { ...seedUser }});
+
+    await prisma.product.create({ data: { ...seedProduct }});
 }
 
 main()
