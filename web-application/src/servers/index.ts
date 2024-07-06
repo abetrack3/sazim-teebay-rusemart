@@ -11,7 +11,7 @@ import ApplicationContext from '../common/model';
 export const initServer = async () => {
 
     const expressApplication: Application = express();
-    const port: number = 3000;
+    const port: number = parseInt(process.env.WEB_SERVER_PORT!);
 
     const httpServer = http.createServer(expressApplication);
 
