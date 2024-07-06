@@ -1,4 +1,5 @@
-import express, { Application, Request, Response } from 'express';
+import { authMiddleware } from './../middlewares/authMiddleware';
+import express, { Application } from 'express';
 import { ApolloServer } from '@apollo/server';
 import { typeDefinitions } from '../graphql/schema';
 import { resolvers } from '../graphql/resolvers';
@@ -27,9 +28,7 @@ export const initServer = async () => {
         '/api/graphql',
         cors<cors.CorsRequest>(),
         express.json(),
-        expressMiddleware(apolloServer, {
-            context: async ({ req }) => ({ token: req.headers.token }),
-          }),
+        expressMiddleware(apolloServer, { context: async ({ req }) => authMiddleware(req) }),
     );
 
     await new Promise<void>((resolve) => httpServer.listen({ port: port }, resolve));
