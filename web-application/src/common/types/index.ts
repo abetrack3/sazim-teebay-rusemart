@@ -1,1 +1,1 @@
-type MonoFunction<T> = () => T | Promise<T>;
+export type MonoFunction<T> = () => T | Promise<T>;

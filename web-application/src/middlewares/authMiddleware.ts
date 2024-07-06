@@ -4,6 +4,7 @@ import { verifyToken } from '../services/auth.service';
 import * as jwt from "jsonwebtoken";
 import ApplicationContext from "../common/model";
 import { GraphQLError } from "graphql";
+import { MonoFunction } from "../common/types";
 
 export const authMiddleware = (request: Request): ApplicationContext => {
 
