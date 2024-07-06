@@ -3,6 +3,7 @@ import { Product, User } from "@prisma/client";
 import { createUser, getUserExistsByEmail } from "../../services/user.service";
 import { getAuthToken } from "../../services/auth.service";
 import ApplicationContext from '../../common/model';
+import { requiresAuthenticatedUser } from '../../middlewares/authMiddleware';
 
 export const resolvers = {
     Query: {
@@ -19,7 +20,7 @@ export const resolvers = {
         authToken: async (_: never, credential: {email: string, password: string}) => await getAuthToken(credential.email, credential.password),
 
         // secured apis
-        createProduct: async (_: never, product: Product, context: ApplicationContext) => context.authenticatedUser ? await createProduct(product) : null,
+        createProduct: async (_: never, product: Product, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => createProduct(product)),
 
     },
 };

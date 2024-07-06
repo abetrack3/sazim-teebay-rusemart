@@ -3,6 +3,7 @@ import { Request } from "express";
 import { verifyToken } from '../services/auth.service';
 import * as jwt from "jsonwebtoken";
 import ApplicationContext from "../common/model";
+import { GraphQLError } from "graphql";
 
 export const authMiddleware = (request: Request): ApplicationContext => {
 
@@ -22,5 +23,20 @@ export const authMiddleware = (request: Request): ApplicationContext => {
     
     return { authenticatedUser: undefined };
                 
+
+};
+
+export const requiresAuthenticatedUser = <T> (context: ApplicationContext, callback: MonoFunction<T>) => {
+
+    if (!context.authenticatedUser) {
+        throw new GraphQLError('User is not authenticated', {
+            extensions: {
+                code: 'Unautheticated',
+                http: { status: 401 },
+            },
+        });
+    }
+
+    return callback();
 
 };
