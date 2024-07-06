@@ -1,13 +1,14 @@
 import apolloClient from "../graphql/client";
 import CREATE_USER from "../graphql/mutations/user.mutations";
 import GET_USER_EXISTS_BY_EMAIL from "../graphql/queries/user.queries";
+import { User } from "../shared/types/user.types";
 
 export const userExistsByEmail = async (email: string) => {
     const { data } = await apolloClient.query({
         query: GET_USER_EXISTS_BY_EMAIL,
         variables: { email },
     });
-    return data.getUserExistsByEmail;
+    return data.getUserExistsByEmail as boolean;
 };
 
 export const createUser = async (
@@ -22,5 +23,5 @@ export const createUser = async (
         variables: { email, firstName, lastName, address, password }
     })
 
-    return data.createUser;
+    return data.createUser as User;
 };
