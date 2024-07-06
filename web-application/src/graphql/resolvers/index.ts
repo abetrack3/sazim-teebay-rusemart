@@ -1,4 +1,4 @@
-import { createProduct, getAllProductsByOwnerId } from './../../services/product.service';
+import { createProduct, deleteProductById, getAllProductsByOwnerId } from './../../services/product.service';
 import { Product, User } from "@prisma/client";
 import { createUser, getUserExistsByEmail } from "../../services/user.service";
 import { getAuthToken } from "../../services/auth.service";
@@ -24,6 +24,7 @@ export const resolvers = {
 
         // secured apis
         createProduct: async (_: never, product: Product, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => createProduct(product)),
+        deleteProductById: async (_: never, productId: number, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => deleteProductById(productId, context.authenticatedUser?.id as number)) 
         
     },
 };

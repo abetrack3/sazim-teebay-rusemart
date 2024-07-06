@@ -64,6 +64,8 @@ type Mutation {
 		rentOption: String!,
 		ownerId: Int!,
 	): Product
+
+  deleteProductById(productId: Int!): Boolean
     
 }
 `;
