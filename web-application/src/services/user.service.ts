@@ -5,7 +5,4 @@ export const getUserExistsByEmail = async (email: string) => await prisma.user.c
 
 export const createUser = async (user: User) => await prisma.user.create({ data: { ...user } });
 
-export const getUserCredentialByEmail = async (email: string) => await prisma.user.findUnique({
-    where: { email: email },
-    select: { email: true, password: true }
-});
+export const getUserByEmail = async (email: string) => await prisma.user.findUnique({ where: { email: email }});
