@@ -21,3 +21,16 @@ export const getAuthToken = async (email: string, password: string) => {
     return token;
 
 };
+
+export const verifyToken = (token: string) => {
+
+    try {
+        jwt.verify(token, process.env.AUTH_TOKEN_SECRET_KEY!);
+        return true;
+    } catch (error) {
+        console.log(error)
+    }
+
+    return false;
+
+};
