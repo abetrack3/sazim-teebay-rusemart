@@ -14,16 +14,9 @@ export const authMiddleware = (request: Request): ApplicationContext => {
         return { authenticatedUser: undefined };
     }
 
-    try {
-        verifyToken(token);
-        const authenticatedUser: User = jwt.decode(token) as User;
-        return { authenticatedUser };
-    } catch(error) {
-        console.log(error);
-    } 
-    
-    return { authenticatedUser: undefined };
-                
+    verifyToken(token);
+    const authenticatedUser: User = jwt.decode(token) as User;
+    return { authenticatedUser };                
 
 };
 

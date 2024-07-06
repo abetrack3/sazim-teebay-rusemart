@@ -1,4 +1,4 @@
-import { authMiddleware } from './../middlewares/authMiddleware';
+import { authMiddleware } from '../middlewares/auth.middleware';
 import express, { Application } from 'express';
 import { ApolloServer } from '@apollo/server';
 import { typeDefinitions } from '../graphql/schema';
