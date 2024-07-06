@@ -24,7 +24,7 @@ export const resolvers = {
 
         // secured apis
         createProduct: async (_: never, product: Product, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => createProduct(product)),
-        deleteProductById: async (_: never, productId: number, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => deleteProductById(productId, context.authenticatedUser?.id as number)) 
+        deleteProductById: async (_: never, args: {productId: number}, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => deleteProductById(args.productId, context.authenticatedUser?.id as number)) ? true : false,
         
     },
 };
