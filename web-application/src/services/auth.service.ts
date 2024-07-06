@@ -1,21 +1,22 @@
 import * as jwt from 'jsonwebtoken';
-import { getUserCredentialByEmail } from "./user.service";
+import { getUserByEmail } from "./user.service";
 
 export const getAuthToken = async (email: string, password: string) => {
 
-    const credential = await getUserCredentialByEmail(email);
+    const user = await getUserByEmail(email);
 
-    if (credential === null || credential === undefined) {
+    if (!user) {
         return null;
     }
 
-    if (credential.password !== password) {
+    if (user.password !== password) {
         return null;
     }
 
     const secretKey: string = process.env.AUTH_TOKEN_SECRET_KEY!;
+    const authTokenLifespan = process.env.AUTH_TOKEN_LIFESPAN!;
 
-    const token = jwt.sign({email: email}, secretKey, { expiresIn: '7m'});
+    const token = jwt.sign({...user, password: null}, secretKey, { expiresIn: authTokenLifespan });
 
     return token;
 
