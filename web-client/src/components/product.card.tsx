@@ -25,9 +25,6 @@ const ProductCard: React.FC<{ product: Product, callbackForDelete: () => void }>
                             < DeleteTwoTone />
                         </IconButton>
                     </CardActions>
-                    <Typography variant="h2" component="div">
-                        {product.name}
-                    </Typography>
                     <Typography variant="body2" color="textSecondary">
                         Title: {product.title}
                     </Typography>
@@ -44,7 +41,7 @@ const ProductCard: React.FC<{ product: Product, callbackForDelete: () => void }>
             </Card>
             <ConfirmationDialog
                 open={open}
-                prompt={`Are you sure you want to delete ${product.name}?`}
+                prompt={`Are you sure you want to delete ${product.title}?`}
                 cancelText={'Cancel'}
                 confirmText={'Yes'}
                 onCancel={() => setOpen(false)}
