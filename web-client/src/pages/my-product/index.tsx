@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { deleteProductById, getAllUserProducts } from '../../services/product.service';
 import { Product } from '../../shared/types/product.types';
-import { Button, CircularProgress } from '@mui/material';
+import { Button, CircularProgress, Divider } from '@mui/material';
 import ProductCard from '../../components/product.card';
 import apolloClient from '../../graphql/client';
 import { useLogout } from '../../hooks/useLogout.hook';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const MyProduct = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -16,7 +16,7 @@ const MyProduct = () => {
         try {
             const products = await getAllUserProducts();
             setProducts(products);
-            
+
         } catch (error) {
             setError('Failed to fetch products');
         } finally {
@@ -38,11 +38,11 @@ const MyProduct = () => {
         const updatedProducts = products.filter(item => item.id !== productId);
 
         setProducts(updatedProducts);
-        
+
         await deleteProductById(productId);
 
         await apolloClient.clearStore();
-        
+
         await fetchProducts();
     };
 
@@ -69,7 +69,11 @@ const MyProduct = () => {
 
                     <Button variant='contained' color='primary' type='button' className='h-min' onClick={() => navigate('create')}>Add Product</Button>
 
-                    <h1 className="text-3xl mb-8">MY PRODUCTS</h1>
+                    <div className="flex justify-center mb-8 gap-3">
+                        <Link to={'/'}><h1 className="text-3xl">MARKETPLACE</h1></Link>
+                        <Divider orientation="vertical" sx={{ borderRightWidth: 5 }} flexItem />
+                        <h1 className="text-3xl font-extrabold">MY PRODUCTS</h1>
+                    </div>
 
                     <Button variant='contained' color='primary' type='button' className='h-min' onClick={logout}>Log out</Button>
 
