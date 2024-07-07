@@ -23,7 +23,7 @@ export const resolvers = {
         authToken: async (_: never, credential: {email: string, password: string}) => await getAuthToken(credential.email, credential.password),
 
         // secured apis
-        createProduct: async (_: never, product: Product, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => createProduct(product)),
+        createProduct: async (_: never, product: Product, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => createProduct(context.authenticatedUser?.id as number, product)),
         deleteProductById: async (_: never, args: {productId: number}, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => deleteProductById(args.productId, context.authenticatedUser?.id as number)) ? true : false,
         
     },

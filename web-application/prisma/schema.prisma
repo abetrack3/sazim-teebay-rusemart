@@ -29,12 +29,10 @@ model Product {
     id             Int      @id @default(autoincrement())
     createdAt      DateTime @default(now())
     updatedAt      DateTime @updatedAt
-    name           String
     title          String
     categories     String[]
     description    String
     purchasePrice  Decimal
-    purchaseOption String
     rentPrice      Decimal
     rentOption     String
     ownerId        Int
