@@ -74,15 +74,19 @@ const MyProduct = () => {
                     <Button variant='contained' color='primary' type='button' className='h-min' onClick={logout}>Log out</Button>
 
                 </div>
-                <div className='flex flex-col items-center gap-4 w-3/5'>
-                    {products.map((product, index) => (
-                        <ProductCard 
-                            key={index}
-                            product={product}
-                            callbackForDelete={async () => await deleteProduct(product.id)}
-                        />
-                    ))}
-                </div>
+
+                {(products.length !== 0) &&
+                    <div className='flex flex-col items-center gap-4 w-3/5'>
+                        {products.map((product, index) => (
+                            <ProductCard
+                                key={index}
+                                product={product}
+                                callbackForDelete={async () => await deleteProduct(product.id)}
+                            />
+                        ))}
+                    </div>
+                }
+                {products.length === 0 && <p>You don't have any product at the moment. Create one?</p>}
             </div>
         </>
     );
