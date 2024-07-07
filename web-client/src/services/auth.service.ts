@@ -15,3 +15,8 @@ export const getAuthToken = async (email: string, password: string) => {
 }
 
 export const isLoggedIn = () => localStorage.getItem('token') !== null;
+
+export const logoutUser = async () => {
+    localStorage.removeItem('token');
+    await apolloClient.resetStore();
+};
