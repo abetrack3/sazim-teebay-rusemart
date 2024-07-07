@@ -4,7 +4,7 @@ import { Product } from '../../shared/types/product.types';
 import { Button, CircularProgress, Divider } from '@mui/material';
 import ProductCard from '../../components/product.card';
 import apolloClient from '../../graphql/client';
-import { useLogout } from '../../hooks/useLogout.hook';
+import { useAuthState } from '../../hooks/useAuthState.hook';
 import { Link, useNavigate } from 'react-router-dom';
 
 const MyProduct = () => {
@@ -29,7 +29,7 @@ const MyProduct = () => {
 
     const navigate = useNavigate();
 
-    const logout = useLogout();
+    const { logout } = useAuthState();
 
     const deleteProduct = async (productId: number) => {
 
@@ -67,7 +67,7 @@ const MyProduct = () => {
             <div className="flex flex-col mt-12 justify-center items-center">
                 <div className="flex justify-between w-3/5">
 
-                    <Button variant='contained' color='primary' type='button' className='h-min' onClick={() => navigate('create')}>Add Product</Button>
+                    <Button variant='outlined' color='primary' type='button' className='h-min' onClick={() => navigate('create')}>Add Product</Button>
 
                     <div className="flex justify-center mb-8 gap-3">
                         <Link to={'/'}><h1 className="text-3xl">MARKETPLACE</h1></Link>
@@ -75,7 +75,7 @@ const MyProduct = () => {
                         <h1 className="text-3xl font-extrabold">MY PRODUCTS</h1>
                     </div>
 
-                    <Button variant='contained' color='primary' type='button' className='h-min' onClick={logout}>Log out</Button>
+                    <Button variant='outlined' color='error' type='button' className='h-min' onClick={logout}>Log out</Button>
 
                 </div>
 
