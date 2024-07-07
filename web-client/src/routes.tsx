@@ -5,6 +5,7 @@ import HomePage from "./pages/home";
 import LoginPage from "./pages/user/login";
 import SignupPage from "./pages/user/signup";
 import MyProduct from "./pages/my-product";
+import CreateProductPage from "./pages/my-product/create";
 
 const routes: RouteObject[] = [
 	{
@@ -15,6 +16,7 @@ const routes: RouteObject[] = [
 			{ path: 'login', element: <LoginPage /> },
 			{ path: 'signup', element: <SignupPage /> },
             { path: 'my-product', element: <MyProduct />},
+			{ path: 'my-product/create', element: <CreateProductPage />},
 			{ path: "*", element: <Error404Page /> },
 		],
 	}
