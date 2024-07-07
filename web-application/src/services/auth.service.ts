@@ -28,7 +28,7 @@ export const verifyToken = (token: string) => {
         jwt.verify(token, process.env.AUTH_TOKEN_SECRET_KEY!);
         return true;
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 
     return false;
