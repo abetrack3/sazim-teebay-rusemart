@@ -1,6 +1,6 @@
 import apolloClient from "../graphql/client"
-import DELETE_PRODUCT_BY_ID from "../graphql/mutations/product.mutation";
-import GET_ALL_USER_PRODUCTS from "../graphql/queries/product.queries"
+import { CREATE_PRODUCT, DELETE_PRODUCT_BY_ID } from "../graphql/mutations/product.mutation";
+import { GET_ALL_USER_PRODUCTS } from "../graphql/queries/product.queries"
 import { Product } from "../shared/types/product.types";
 
 export const getAllUserProducts = async () => {
@@ -19,3 +19,14 @@ export const deleteProductById = async (productId: number) => {
 
     return data.deleteProductById as boolean;
 }
+
+export const createProduct = async (product: Product) => {
+    
+    const { data } = await apolloClient.mutate({
+        mutation: CREATE_PRODUCT,
+        variables: { ...product },
+    });
+
+    return data.createProduct as Product;
+
+};
