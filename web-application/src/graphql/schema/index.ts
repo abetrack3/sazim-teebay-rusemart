@@ -29,6 +29,7 @@ type Query {
 
     getUserExistsByEmail(email: String): Boolean
     getAllUserProducts: [Product]
+    getAllMarketAvailableProducts: [Product]
 	
 }
 
