@@ -64,9 +64,10 @@ const MyProduct = () => {
 
     return (
         <>
-            <div className="flex flex-col mt-10 justify-center items-center">
+            <div className="flex flex-col mt-12 justify-center items-center">
                 <div className="flex justify-between w-3/5">
 
+                    <Button variant='contained' color='primary' type='button' className='h-min' onClick={() => navigate('create')}>Add Product</Button>
 
                     <h1 className="text-3xl mb-8">MY PRODUCTS</h1>
 
