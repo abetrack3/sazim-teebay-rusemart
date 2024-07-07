@@ -32,6 +32,6 @@ export const initServer = async () => {
     );
 
     await new Promise<void>((resolve) => httpServer.listen({ port: port }, resolve));
-    console.log(`🚀 Server ready at http://localhost:${port}/`);
+    console.log(`🚀 Server Started at http://localhost:${port}/`);
 
 }
