@@ -24,9 +24,11 @@ export const initServer = async () => {
 
     await apolloServer.start();
 
+    const origin: string[] = process.env.ALLOWED_ORIGINS!.split(';');
+
     expressApplication.use(
         '/api/graphql',
-        cors<cors.CorsRequest>(),
+        cors<cors.CorsRequest>({ origin }),
         express.json(),
         expressMiddleware(apolloServer, { context: async ({ req }) => authMiddleware(req) }),
     );
