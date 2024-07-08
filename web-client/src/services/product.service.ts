@@ -27,6 +27,8 @@ export const createProduct = async (product: Product) => {
         variables: { ...product },
     });
 
+    await apolloClient.resetStore();
+
     return data.createProduct as Product;
 
 };
