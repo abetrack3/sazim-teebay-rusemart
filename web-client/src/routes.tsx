@@ -6,6 +6,7 @@ import LoginPage from "./pages/user/login";
 import SignupPage from "./pages/user/signup";
 import MyProduct from "./pages/my-product";
 import CreateProductPage from "./pages/my-product/create";
+import RequireAuth from "./components/auth/require-auth";
 
 const routes: RouteObject[] = [
 	{
@@ -15,8 +16,8 @@ const routes: RouteObject[] = [
 			{ index: true, element: <HomePage /> },
 			{ path: 'login', element: <LoginPage /> },
 			{ path: 'signup', element: <SignupPage /> },
-            { path: 'my-product', element: <MyProduct />},
-			{ path: 'my-product/create', element: <CreateProductPage />},
+            { path: 'my-product', element: <RequireAuth> <MyProduct /> </RequireAuth>},
+			{ path: 'my-product/create', element: <RequireAuth> <CreateProductPage /> </RequireAuth>},
 			{ path: "*", element: <Error404Page /> },
 		],
 	}
