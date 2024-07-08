@@ -1,12 +1,16 @@
+import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
+import React from "react";
 
-import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogTitle
-} from "@mui/material";
+type ConfirmationDialogComponentType = React.FC<{
+    open: boolean;
+    prompt: string;
+    confirmText: string;
+    cancelText: string;
+    onCancel: () => void;
+    onConfirm: () => void;
+}>
 
-const ConfirmationDialog = ({ open, prompt, confirmText, cancelText, onCancel, onConfirm }) => {
+const ConfirmationDialog: ConfirmationDialogComponentType = ({ open, prompt, confirmText, cancelText, onCancel, onConfirm }) => {
 
     return (
         <>

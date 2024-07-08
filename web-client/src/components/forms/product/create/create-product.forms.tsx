@@ -1,5 +1,5 @@
 import { Button, Step, StepLabel, Stepper, TextField, Typography } from "@mui/material";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
 import productCreateValidationSchema from "../../../../validators/product.create.form.validation.schema";
 import useMultiStepForm from "../../../../hooks/multi-step-form.hook";
 import FixedTextArea from "../../../inputs/fixed-text-area";
@@ -88,24 +88,24 @@ const CreateProductForm = () => {
                 </Typography>
 
                 <Field>
-                    {({ form }) => {
+                    {(fieldProps: FieldProps) => {
 
                         return (
                             <>
                                 <Typography component="p" marginBottom={3}>
-                                    {`Title: ${form.values.title}`}
+                                    {`Title: ${fieldProps.form.values.title}`}
                                 </Typography>
 
                                 <Typography component="p" marginBottom={3}>
-                                    {`Categories: ${form.values.categories.join(', ')}`}
+                                    {`Categories: ${fieldProps.form.values.categories.join(', ')}`}
                                 </Typography>
 
                                 <Typography component="p" marginBottom={3}>
-                                    {`Description: ${form.values.description}`}
+                                    {`Description: ${fieldProps.form.values.description}`}
                                 </Typography>
 
                                 <Typography component="p" marginBottom={3}>
-                                    {`Price: $${form.values.purchasePrice}, To rent: $${form.values.rentPrice} per day`}
+                                    {`Price: $${fieldProps.form.values.purchasePrice}, To rent: $${fieldProps.form.values.rentPrice} per day`}
                                 </Typography>
                             </>
                         );
