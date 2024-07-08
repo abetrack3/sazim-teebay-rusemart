@@ -59,3 +59,34 @@ Ensure you have the following installed:
     ```sh
     npm run dev
     ```
+
+----------
+
+# Project Progress Report
+
+### Technologies used - ReactJs, ExpressJs, Apollo GraphQL(server + client), Prisma ORM, Postgres DB, MaterialUI, Formik, Tailwind CSS
+
+## Part 1: Preliminary features
+- User sign up and login using jwt token
+
+## Part 2: Implementation Details
+- Successfully implemented multi step based form to create products, this involved creating multiple resuable components (however, there is still a lot of rooms for improvement here)
+- Users can delete their own products
+- Both frontend and backend private apis are secured with jwt token
+
+## Part 3: Rent and Buy/sell
+- Implemented marketplace that displays all products created by all users
+- This is also the homepage
+- Both my-product and marketplace resues the same component: ProductCard component
+
+## Scope for improvements, unhandled corner/error cases
+- password could hashed before storing in db
+- renew jwt token before expiry to avoid sudden logout
+- Create component ProductList to introduce more code reusability
+- Error message should be displayed of only the current step
+- Optimize client side caching
+
+## Works that remains
+- Edit product
+- Buy/Rent products
+- Display user's product history
