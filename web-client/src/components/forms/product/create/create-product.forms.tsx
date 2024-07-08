@@ -90,9 +90,6 @@ const CreateProductForm = () => {
                 <Field>
                     {({ form }) => {
 
-                        
-                        
-
                         return (
                             <>
                                 <Typography component="p" marginBottom={3}>
