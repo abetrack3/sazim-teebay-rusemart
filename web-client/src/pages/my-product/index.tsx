@@ -64,7 +64,7 @@ const MyProduct = () => {
 
     return (
         <>
-            <div className="flex flex-col mt-12 justify-center items-center">
+            <div className="flex flex-col pt-12 justify-center items-center">
                 <div className="flex justify-between w-3/5">
 
                     <Button variant='outlined' color='primary' type='button' className='h-min' onClick={() => navigate('create')}>Add Product</Button>
