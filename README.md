@@ -21,7 +21,7 @@ Ensure you have the following installed:
 
 3. **Set up environment variables:**
 
-    - Create a .env file in the web-application folder.
+    - Create a .env file in the **web-application** folder.
     - Add the necessary environment variables as per the project requirements (refer to .env.example).
 
 4. **Generate Prisma:**
@@ -52,7 +52,7 @@ Ensure you have the following installed:
 
 3. **Set up environment variables:**
 
-    - Create a .env file in the web-application folder.
+    - Create a .env file in the **web-client** folder.
     - Add the necessary environment variables as per the project requirements (refer to .env.example).
 
 4. **Run the server:**
@@ -90,3 +90,13 @@ Ensure you have the following installed:
 - Edit product
 - Buy/Rent products
 - Display user's product history
+
+-----------
+
+# Personal Outcome?
+
+This was a very interesting challenge given the fact that this project had to be completed in a week with tech stacks that was new to me! I had to study a lot before I could actually start writing codes and show visible progress. Some takeaways:
+- Became familiar with end to end project development from scratch (even though self taught haha!)
+- Learned new technologies liked ReactJs, ExpressJs, GraphQL, Postgres
+- Implementing authentication using middlewares and securing private routes and apis
+- There is only so much you can do alone! That's why teamwork exists!
