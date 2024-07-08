@@ -1,19 +1,13 @@
-// components/RequireAuth.jsx
-import { useNavigate } from 'react-router-dom';
-import { useAuthState } from '../../hooks/useAuthState.hook';
-import { ReactNode, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import { ReactNode } from 'react';
 
 const RequireAuth: React.FC<{ children: ReactNode }> = ({ children }) => {
 
-    const { isAuthenticated } = useAuthState();
+    const token = localStorage.getItem('token');
 
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!isAuthenticated) {
-            navigate('/login');
-        }
-    }, [isAuthenticated, navigate]);
+    if (!token) {
+        return <Navigate to={'/login'}></Navigate>
+    }
 
     return children;
 };
