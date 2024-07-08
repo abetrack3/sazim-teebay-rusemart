@@ -1,7 +1,7 @@
 import { Card, CardActions, CardContent, IconButton, Typography } from '@mui/material';
 import { DeleteTwoTone } from "@mui/icons-material";
 import { Product } from '../shared/types/product.types';
-import ConfirmationDialog from './confirmation.dialog';
+import ConfirmationDialog from './feedback/confirmation.dialog';
 import { useState } from 'react';
 
 const ProductCard: React.FC<{ product: Product, actionsEnabled: boolean, callbackForDelete?: () => void }> = ({ product, actionsEnabled, callbackForDelete }) => {
