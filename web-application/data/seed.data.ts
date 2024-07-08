@@ -17,5 +17,6 @@ export const seedProduct = {
     purchasePrice: new Decimal(23.0),
     rentOption: "not considered at the moment",
     rentPrice: new Decimal(33.0),
+    ownerId: 1,
 }
 
