@@ -66,7 +66,7 @@ const HomePage = () => {
                             <ProductCard
                                 key={index}
                                 product={product}
-                                callbackForDelete={() => {}}
+                                actionsEnabled={false}                                
                             />
                         ))}
                     </div>

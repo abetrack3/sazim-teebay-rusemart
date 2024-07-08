@@ -85,6 +85,7 @@ const MyProduct = () => {
                             <ProductCard
                                 key={index}
                                 product={product}
+                                actionsEnabled={true}
                                 callbackForDelete={async () => await deleteProduct(product.id)}
                             />
                         ))}

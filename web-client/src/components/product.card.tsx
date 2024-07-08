@@ -4,12 +4,14 @@ import { Product } from '../shared/types/product.types';
 import ConfirmationDialog from './confirmation.dialog';
 import { useState } from 'react';
 
-const ProductCard: React.FC<{ product: Product, callbackForDelete: () => void }> = ({ product, callbackForDelete }) => {
+const ProductCard: React.FC<{ product: Product, actionsEnabled: boolean, callbackForDelete?: () => void }> = ({ product, actionsEnabled, callbackForDelete }) => {
 
     const [open, setOpen] = useState(false);
 
     const handleDeleteConfirmation = async () => {
-        await callbackForDelete();
+        if (callbackForDelete) {
+            await callbackForDelete();
+        }
         setOpen(false);
     }
 
@@ -17,14 +19,14 @@ const ProductCard: React.FC<{ product: Product, callbackForDelete: () => void }>
         <>
             <Card className='m-3 w-full relative'>
                 <CardContent className='flex flex-col gap-4'>
-                    <CardActions className='absolute top-4 right-4'>
+                    {actionsEnabled && <CardActions className='absolute top-4 right-4'>
                         <IconButton
                             color='error'
                             onClick={() => setOpen(true)}
                         >
                             < DeleteTwoTone />
                         </IconButton>
-                    </CardActions>
+                    </CardActions>}
                     <Typography variant="body2" color="textSecondary">
                         Title: {product.title}
                     </Typography>
