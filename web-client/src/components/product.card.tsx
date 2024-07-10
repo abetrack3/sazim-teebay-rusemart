@@ -1,12 +1,15 @@
 import { Card, CardActions, CardContent, IconButton, Typography } from '@mui/material';
-import { DeleteTwoTone } from "@mui/icons-material";
+import { DeleteTwoTone, EditTwoTone } from "@mui/icons-material";
 import { Product } from '../shared/types/product.types';
 import ConfirmationDialog from './feedback/confirmation.dialog';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard: React.FC<{ product: Product, actionsEnabled: boolean, callbackForDelete?: () => void }> = ({ product, actionsEnabled, callbackForDelete }) => {
 
     const [open, setOpen] = useState(false);
+
+    const naviagate = useNavigate();
 
     const handleDeleteConfirmation = async () => {
         if (callbackForDelete) {
@@ -19,14 +22,25 @@ const ProductCard: React.FC<{ product: Product, actionsEnabled: boolean, callbac
         <>
             <Card className='m-3 w-full relative'>
                 <CardContent className='flex flex-col gap-4'>
-                    {actionsEnabled && <CardActions className='absolute top-4 right-4'>
-                        <IconButton
-                            color='error'
-                            onClick={() => setOpen(true)}
-                        >
-                            < DeleteTwoTone />
-                        </IconButton>
-                    </CardActions>}
+                    {actionsEnabled &&
+                    <div className='absolute top-4 right-4'>
+                        <CardActions>
+                            <IconButton
+                                color='error'
+                                onClick={() => setOpen(true)}
+                            >
+                                < DeleteTwoTone />
+                            </IconButton>
+                        </CardActions>
+                        <CardActions>
+                            <IconButton
+                                color='default'
+                                onClick={() => naviagate(`edit/${product.id}`)}
+                            >
+                                < EditTwoTone />
+                            </IconButton>
+                        </CardActions>
+                    </div>}
                     <Typography variant="body2" color="textSecondary">
                         Title: {product.title}
                     </Typography>
