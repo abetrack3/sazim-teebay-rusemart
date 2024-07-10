@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { deleteProductById, getAllUserProducts } from '../../services/product.service';
 import { Product } from '../../shared/types/product.types';
 import { Button, CircularProgress, Divider } from '@mui/material';
-import ProductCard from '../../components/product.card';
 import apolloClient from '../../graphql/client';
 import { useAuthState } from '../../hooks/useAuthState.hook';
 import { Link, useNavigate } from 'react-router-dom';
+import { ProductList } from '../../components/product.list';
 
 const MyProduct = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -81,14 +81,11 @@ const MyProduct = () => {
 
                 {(products.length !== 0) &&
                     <div className='flex flex-col items-center gap-4 w-3/5'>
-                        {products.map((product, index) => (
-                            <ProductCard
-                                key={index}
-                                product={product}
-                                actionsEnabled={true}
-                                callbackForDelete={async () => await deleteProduct(product.id)}
-                            />
-                        ))}
+                        <ProductList
+                            products={products}
+                            actionsEnabled={true}
+                            callbackForDelete={deleteProduct}
+                        />
                     </div>
                 }
                 {products.length === 0 && <p>You don't have any product at the moment. Create one?</p>}

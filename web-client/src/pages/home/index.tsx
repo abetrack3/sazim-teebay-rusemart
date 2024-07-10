@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import ProductCard from "../../components/product.card";
 import { Product } from "../../shared/types/product.types";
 import { useAuthState } from "../../hooks/useAuthState.hook";
+import { ProductList } from "../../components/product.list";
 
 const HomePage = () => {
 
@@ -62,13 +63,9 @@ const HomePage = () => {
 
                 {(products.length !== 0) &&
                     <div className='flex flex-col items-center gap-4 w-3/5'>
-                        {products.map((product, index) => (
-                            <ProductCard
-                                key={index}
-                                product={product}
-                                actionsEnabled={false}                                
-                            />
-                        ))}
+                        <ProductList
+                            products={products}
+                            actionsEnabled={false} />
                     </div>
                 }
                 {products.length === 0 && <p>You don't have any product at the moment. Create one?</p>}
