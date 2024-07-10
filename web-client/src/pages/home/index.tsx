@@ -2,7 +2,6 @@ import { Button, CircularProgress, Divider } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { getAllMarketAvailableProducts } from "../../services/product.service";
 import { useState, useEffect } from "react";
-import ProductCard from "../../components/product.card";
 import { Product } from "../../shared/types/product.types";
 import { useAuthState } from "../../hooks/useAuthState.hook";
 import { ProductList } from "../../components/product.list";
