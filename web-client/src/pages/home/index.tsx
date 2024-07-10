@@ -65,7 +65,8 @@ const HomePage = () => {
                     <div className='flex flex-col items-center gap-4 w-3/5'>
                         <ProductList
                             products={products}
-                            actionsEnabled={false} />
+                            actionsEnabled={false}
+                        />
                     </div>
                 }
                 {products.length === 0 && <p>You don't have any product at the moment. Create one?</p>}
