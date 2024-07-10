@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const DELETE_PRODUCT_BY_ID = gql`
 
-mutation DeleteProductById($productId: Int!) {
+mutation DeleteProductById($productId: String!) {
   deleteProductById(productId: $productId)
 }
 

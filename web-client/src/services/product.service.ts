@@ -11,7 +11,7 @@ export const getAllUserProducts = async () => {
     return data.getAllUserProducts as Product[];
 }
 
-export const deleteProductById = async (productId: number) => {
+export const deleteProductById = async (productId: string) => {
     const { data } = await apolloClient.mutate({
         mutation: DELETE_PRODUCT_BY_ID,
         variables: { productId },

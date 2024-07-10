@@ -1,5 +1,5 @@
 export type Product = {
-    id: number;
+    id: string;
     createdAt: string;
     updatedAt: string;
     title: string;
@@ -8,5 +8,5 @@ export type Product = {
     purchasePrice: number;
     rentPrice: number;
     rentOption: string;
-    ownerId: number;
+    ownerId: string;
 }

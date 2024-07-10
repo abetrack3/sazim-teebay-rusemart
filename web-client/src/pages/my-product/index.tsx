@@ -31,7 +31,7 @@ const MyProduct = () => {
 
     const { logout } = useAuthState();
 
-    const deleteProduct = async (productId: number) => {
+    const deleteProduct = async (productId: string) => {
 
         if (!productId) return;
 

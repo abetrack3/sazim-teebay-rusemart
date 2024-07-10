@@ -13,7 +13,7 @@ export const resolvers = {
         getAllMarketAvailableProducts: async () => await getAllMarketAvailableProducts(),
 
         // secured apis
-        getAllUserProducts: async(_: never, __: never, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getAllProductsByOwnerId(context.authenticatedUser?.id as number)),
+        getAllUserProducts: async(_: never, __: never, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getAllProductsByOwnerId(context.authenticatedUser?.id as string)),
 
     },
 
@@ -24,8 +24,8 @@ export const resolvers = {
         authToken: async (_: never, credential: {email: string, password: string}) => await getAuthToken(credential.email, credential.password),
 
         // secured apis
-        createProduct: async (_: never, product: Product, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => createProduct(context.authenticatedUser?.id as number, product)),
-        deleteProductById: async (_: never, args: {productId: number}, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => deleteProductById(args.productId, context.authenticatedUser?.id as number)) ? true : false,
+        createProduct: async (_: never, product: Product, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => createProduct(context.authenticatedUser?.id as string, product)),
+        deleteProductById: async (_: never, args: {productId: string}, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => deleteProductById(args.productId, context.authenticatedUser?.id as string)) ? true : false,
         
     },
 };

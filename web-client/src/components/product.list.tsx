@@ -1,7 +1,7 @@
 import { Product } from "../shared/types/product.types";
 import ProductCard from "./product.card";
 
-export const ProductList: React.FC<{products: Product[], actionsEnabled: boolean, callbackForDelete?: (id: number) => void}> = ({ products, actionsEnabled, callbackForDelete }) => {
+export const ProductList: React.FC<{products: Product[], actionsEnabled: boolean, callbackForDelete?: (id: string) => void}> = ({ products, actionsEnabled, callbackForDelete }) => {
 
     return (
         <>

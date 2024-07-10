@@ -1,7 +1,7 @@
 export const typeDefinitions = `#graphql
 
 type User {
-    id: Int!
+    id: String!
     createdAt: String!
     updatedAt: String!
     email: String!
@@ -12,7 +12,7 @@ type User {
 }
 
 type Product {
-    id: Int!
+    id: String!
     createdAt: String!
     updatedAt: String!
     title: String!
@@ -21,7 +21,7 @@ type Product {
     purchasePrice: Float!
     rentPrice: Float!
     rentOption: String!
-    ownerId: Int!
+    ownerId: String!
     owner: User
 }
 
@@ -54,7 +54,7 @@ type Mutation {
 		rentOption: String!,
 	): Product
 
-  deleteProductById(productId: Int!): Boolean
+  deleteProductById(productId: String!): Boolean
     
 }
 `;
