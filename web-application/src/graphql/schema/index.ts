@@ -42,13 +42,6 @@ type Mutation {
 		address: String!,
 		password: String!
     ): User
-    
-    updateUser(
-		id: Int!,
-		firstName: String,
-		lastName: String,
-		address: String,
-    ): User
 
     authToken(email: String!, password: String!): String
 
