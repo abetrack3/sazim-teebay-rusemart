@@ -26,18 +26,18 @@ const ProductCard: React.FC<{ product: Product, actionsEnabled: boolean, callbac
                     <div className='absolute top-4 right-4'>
                         <CardActions>
                             <IconButton
-                                color='error'
-                                onClick={() => setOpen(true)}
-                            >
-                                < DeleteTwoTone />
-                            </IconButton>
-                        </CardActions>
-                        <CardActions>
-                            <IconButton
                                 color='default'
                                 onClick={() => naviagate(`edit/${product.id}`)}
                             >
                                 < EditTwoTone />
+                            </IconButton>
+                        </CardActions>
+                        <CardActions>
+                            <IconButton
+                                color='error'
+                                onClick={() => setOpen(true)}
+                            >
+                                < DeleteTwoTone />
                             </IconButton>
                         </CardActions>
                     </div>}
