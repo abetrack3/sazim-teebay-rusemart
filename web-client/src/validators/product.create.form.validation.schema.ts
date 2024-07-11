@@ -17,12 +17,12 @@ const productCreateValidationSchema = yup.object({
 
     purchasePrice: yup
         .number()
-        .moreThan(0)
+        .moreThan(0, 'Purchase Price must be greater than zero')
         .required('Purchase price is required'),
 
     rentPrice: yup
         .number()
-        .moreThan(0)
+        .moreThan(0, 'Rent Price must be greater than zero')
         .required('Rent price is required'),
 
     rentOption: yup
