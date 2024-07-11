@@ -11,7 +11,7 @@ export const seedUser = {
 
 export const seedProduct = {
     id: "18843727-29bd-4b18-96d3-b3d11c56bc39",
-    categories: ['cat', 'dog'],
+    categories: ['Toys'],
     description: 'cannot be described',
     title: 'bull dog',
     purchasePrice: new Decimal(23.0),
