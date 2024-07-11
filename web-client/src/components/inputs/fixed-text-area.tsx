@@ -7,7 +7,6 @@ export interface TextAreaProps {
     minRows: number;
     placeHolder: string;
     className: string;
-    [key: string]: string | number;
 }
 
 const FixedTextArea = (fieldProps: FieldProps<string> & TextAreaProps) => {
