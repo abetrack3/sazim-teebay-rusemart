@@ -1,15 +1,16 @@
-import { Button, Step, StepLabel, Stepper, TextField, Typography } from "@mui/material";
-import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
+import { Button, Step, StepLabel, Stepper } from "@mui/material";
+import { Form, Formik } from "formik";
 import productCreateValidationSchema from "../../../../validators/product.create.form.validation.schema";
 import useMultiStepForm from "../../../../hooks/multi-step-form.hook";
-import FixedTextArea from "../../../inputs/fixed-text-area";
-import { CategoryList } from "../../../../shared/constants/categories.const";
-import MultiSelectDropdownWithAutocomplete from "../../../inputs/multi-select-autocomplete";
-import NumberInput from "../../../inputs/number-input";
+import { Categories, CategoryList } from "../../../../shared/constants/categories.const";
 import { createProduct } from "../../../../services/product.service";
 import { Product } from "../../../../shared/types/product.types";
-import SelectBasic from "../../../inputs/select-basic";
-import { RentOption, RentOptions } from "../../../../shared/constants/rent-option.const";
+import { RentOption } from "../../../../shared/constants/rent-option.const";
+import { ProductTitleStep } from "../steps/product-title.step";
+import { CategoriesStep } from "../steps/categories.step";
+import { DescriptionStep } from "../steps/description.step";
+import { PricingInfoStep } from "../steps/pricing-info.step";
+import { SummaryStep } from "../steps/summary.step";
 
 const CreateProductForm = () => {
 
@@ -24,96 +25,11 @@ const CreateProductForm = () => {
         back
     } = useMultiStepForm(
         [
-            <>
-                <Typography variant="h5" component="div" align="center" marginBottom={8}>
-                    {'Select a title for your product'}
-                </Typography>
-                <Field name="title" as={TextField} label="Title" fullWidth />
-                <ErrorMessage name="title" component="div" />
-            </>,
-            <>
-                <Typography variant="h5" component="div" align="center" marginBottom={8}>
-                    {'Select categories for your product for your product'}
-                </Typography>
-                <Field
-                    name='categories'
-                    component={MultiSelectDropdownWithAutocomplete}
-                    dropDownOptions={CategoryList}
-                    label='Select Categories'
-                    placeHolder='Type your categories'
-                ></Field>
-                <ErrorMessage name="categories" component="div" />
-            </>,
-            <>
-                <Typography variant="h5" component="div" align="center" marginBottom={8}>
-                    {'Select description'}
-                </Typography>
-                <Field name="description" component={FixedTextArea} placeHolder="Description" className='w-full' minRows={4} />
-                <ErrorMessage name="description" component="div" />
-            </>,
-            <>
-                <Typography variant="h5" component="div" align="center" marginBottom={8}>
-                    {'Select price'}
-                </Typography>
-                <Field
-                    name='purchasePrice'
-                    component={NumberInput}
-                    label='Purchase Price'
-                    placeHolder='Enter your Price'
-                    adornmentAtStart='$'
-                ></Field>
-                <ErrorMessage name="purchasePrice" component="div" />
-                <div className="flex justify-around gap-6 mt-8">
-                    <Field
-                        name='rentPrice'
-                        component={NumberInput}
-                        label='Rent Price'
-                        placeHolder='Enter your Rent Price'
-                        adornmentAtStart='$'
-                    ></Field>
-                    <Field
-                        fullWidth
-                        name="rentOption"
-                        component={SelectBasic}
-                        dropDownOptions={RentOptions}
-                        label="Rent Option"
-                        placeHolder="Select Rent Option"
-                    />
-                </div>
-
-            </>,
-            <>
-                <Typography variant="h5" component="div" marginBottom={4} fontWeight={'bold'}>
-                    {'Summary'}
-                </Typography>
-
-                <Field>
-                    {(fieldProps: FieldProps) => {
-
-                        return (
-                            <>
-                                <Typography component="p" marginBottom={3}>
-                                    {`Title: ${fieldProps.form.values.title}`}
-                                </Typography>
-
-                                <Typography component="p" marginBottom={3}>
-                                    {`Categories: ${fieldProps.form.values.categories.join(', ')}`}
-                                </Typography>
-
-                                <Typography component="p" marginBottom={3}>
-                                    {`Description: ${fieldProps.form.values.description}`}
-                                </Typography>
-
-                                <Typography component="p" marginBottom={3}>
-                                    {`Price: $${fieldProps.form.values.purchasePrice}, To rent: $${fieldProps.form.values.rentPrice} per day`}
-                                </Typography>
-                            </>
-                        );
-
-                    }}
-                </Field>
-
-            </>,
+            <ProductTitleStep />,
+            <CategoriesStep />,
+            <DescriptionStep />,
+            <PricingInfoStep />,
+            <SummaryStep />
         ],
         [
             'Product title',
@@ -128,14 +44,14 @@ const CreateProductForm = () => {
         <div className="w-3/5">
             <Formik
                 initialValues={{
-                    title: 'aaa',
-                    categories: [CategoryList[1]],
-                    description: 'vvvvvvvv',
-                    purchasePrice: 23,
-                    rentPrice: 11,
-                    rentOption: RentOption.PER_DAY.toString(),
+                    title: '',
+                    categories: [],
+                    description: '',
+                    purchasePrice: 0,
+                    rentPrice: 0,
+                    rentOption: RentOption.PER_DAY,
                 }}
-                onSubmit={e => createProduct(e as Product)}
+                onSubmit={e => createProduct(e as unknown as Product)}
                 validationSchema={productCreateValidationSchema}
             >
                 {({ isValid }) => (
@@ -177,8 +93,6 @@ const CreateProductForm = () => {
                             </div>
 
                         </div>
-
-
 
                     </Form>
                 )}
