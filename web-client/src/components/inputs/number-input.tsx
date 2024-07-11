@@ -26,7 +26,11 @@ const NumberInput = (fieldProps: FieldProps<number> & NumberInputProps) => {
                         : (<></>)
                     }
                     label={fieldProps.placeHolder}
-                    onChange={event => fieldProps.form.setFieldValue(fieldProps.field.name, event.target.value)}
+                    onTouchEnd={() => fieldProps.form.setFieldTouched(fieldProps.field.name)}
+                    onChange={event => {
+                        fieldProps.form.setFieldTouched(fieldProps.field.name);
+                        fieldProps.form.setFieldValue(fieldProps.field.name, parseFloat(event.target.value));
+                    }}
                 />
             </FormControl>
         </>
