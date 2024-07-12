@@ -54,3 +54,20 @@ query GetUserProductById($productId: String) {
     ownerId
   }
 }`;
+
+export const GET_MARKETPLACE_PRODUCT_BY_ID = gql`
+
+query GetMarketplaceProductById($productId: String) {
+  getMarketplaceProductById(productId: $productId) {
+    id
+    createdAt
+    updatedAt
+    title
+    categories
+    description
+    purchasePrice
+    rentPrice
+    rentOption
+    ownerId
+  }
+}`;
