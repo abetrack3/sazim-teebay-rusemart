@@ -1,7 +1,14 @@
 import { Product } from "../shared/types/product.types";
 import ProductCard from "./product.card";
 
-export const ProductList: React.FC<{products: Product[], actionsEnabled: boolean, callbackForDelete?: (id: string) => void}> = ({ products, actionsEnabled, callbackForDelete }) => {
+interface ProductListProps {
+    products: Product[];
+    actionsEnabled: boolean;
+    callbackForDelete?: (id: string) => void;
+    callBackForOnClick?: (id: string) => void;
+}
+
+export const ProductList: React.FC<ProductListProps> = ({ products, actionsEnabled, callbackForDelete, callBackForOnClick }) => {
 
     return (
         <>
@@ -11,6 +18,7 @@ export const ProductList: React.FC<{products: Product[], actionsEnabled: boolean
                     product={product}
                     actionsEnabled={actionsEnabled}
                     callbackForDelete={async () => callbackForDelete ? await callbackForDelete(product.id) : {}}
+                    callBackForOnClick={async () => callBackForOnClick ? await callBackForOnClick(product.id) : {}}
                 />
             ))}
         </>

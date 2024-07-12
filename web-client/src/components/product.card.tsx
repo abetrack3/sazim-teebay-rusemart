@@ -5,7 +5,14 @@ import ConfirmationDialog from './ui/feedback/confirmation.dialog';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ProductCard: React.FC<{ product: Product, actionsEnabled: boolean, callbackForDelete?: () => void }> = ({ product, actionsEnabled, callbackForDelete }) => {
+interface ProductCardProps {
+    product: Product;
+    actionsEnabled: boolean;
+    callbackForDelete?: () => void;
+    callBackForOnClick?: () => void;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ product, actionsEnabled, callbackForDelete, callBackForOnClick }) => {
 
     const [open, setOpen] = useState(false);
 
@@ -18,16 +25,33 @@ const ProductCard: React.FC<{ product: Product, actionsEnabled: boolean, callbac
         setOpen(false);
     }
 
+    const handleOnClickEvent = async () => {
+        if (callBackForOnClick) {
+            await callBackForOnClick();
+        }
+    }
+
     return (
         <>
-            <Card className='m-3 w-full relative'>
+            <Card variant='outlined' className='m-3 w-full relative' >
+            <div onClick={(e) => {
+                console.log('wassup');
+                e.preventDefault();
+                e.stopPropagation();
+                handleOnClickEvent();
+            }}>
+
                 <CardContent className='flex flex-col gap-4'>
                     {actionsEnabled &&
                     <div className='absolute top-4 right-4'>
                         <CardActions>
                             <IconButton
                                 color='default'
-                                onClick={() => naviagate(`edit/${product.id}`)}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    naviagate(`edit/${product.id}`);
+                                }}
                             >
                                 < EditTwoTone />
                             </IconButton>
@@ -35,8 +59,11 @@ const ProductCard: React.FC<{ product: Product, actionsEnabled: boolean, callbac
                         <CardActions>
                             <IconButton
                                 color='error'
-                                onClick={() => setOpen(true)}
-                            >
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    setOpen(true);
+                                }}>
                                 < DeleteTwoTone />
                             </IconButton>
                         </CardActions>
@@ -54,6 +81,7 @@ const ProductCard: React.FC<{ product: Product, actionsEnabled: boolean, callbac
                         Description: {product.description}
                     </Typography>
                 </CardContent>
+            </div>
             </Card>
             <ConfirmationDialog
                 open={open}

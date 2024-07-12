@@ -30,6 +30,11 @@ const HomePage = () => {
 
     const { isAuthenticated } = useAuthState();
 
+    const navigateToProductDetails = (productId: string) => {
+        console.log('getting called alright!');
+        navigate(`/product/${productId}`)
+    };
+
     if (loading) {
         return (
             <div className="flex flex-col h-full justify-center items-center">
@@ -71,6 +76,7 @@ const HomePage = () => {
                         <ProductList
                             products={products}
                             actionsEnabled={false}
+                            callBackForOnClick={navigateToProductDetails}
                         />
                     </div>
                 }
