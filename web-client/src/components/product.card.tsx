@@ -55,6 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, actionsEnabled, call
                                 < EditTwoTone />
                             </IconButton>
                         </CardActions>
+                        {product.isSold === false &&
                         <CardActions>
                             <IconButton
                                 color='error'
@@ -65,7 +66,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, actionsEnabled, call
                                 }}>
                                 < DeleteTwoTone />
                             </IconButton>
-                        </CardActions>
+                        </CardActions>}
                     </div>}
                     <Typography variant="body2" color="textSecondary">
                         Title: {product.title}
