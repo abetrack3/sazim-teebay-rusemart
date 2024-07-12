@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import loginValidationSchema from "../../validators/login.form.validation.schema";
 import { getAuthToken } from "../../services/auth.service";
 import { useState } from "react";
+import { LoginUserForm } from "../../components/forms/user/user-login.forms";
 
 
 const LoginPage = () => {
@@ -38,31 +39,7 @@ const LoginPage = () => {
                 px={8}
                 py={6}
             >
-                <Formik
-                    initialValues={{
-                        email: '',
-                        password: '',
-                    }}
-                    validationSchema={loginValidationSchema}
-                    onSubmit={(values, { setSubmitting }) => handleLogin(values.email, values.password).finally(() => setSubmitting(false))}
-                >
-                    {({ isSubmitting }) => (
-                        <Form className="flex flex-col gap-4">
-                            
-                            <Field name="email" as={TextField} label="Email" fullWidth />
-                            <ErrorMessage name="email" component="div" />
-
-                            <Field name="password" as={TextField} label="Password" type="password" fullWidth />
-                            <ErrorMessage name="password" component="div" />
-
-                            {errorMessage && <div className="text-red-500">{errorMessage}</div>}
-
-                            <Button type="submit" disabled={isSubmitting} variant="contained" color="primary">
-                                Log in
-                            </Button>
-                        </Form>
-                    )}
-                </Formik>
+                <LoginUserForm errorMessage={errorMessage} handleLogin={handleLogin} />
 
             </Box>
 
