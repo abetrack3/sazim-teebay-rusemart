@@ -17,7 +17,6 @@ export const LoginUserForm: React.FC<UserLoginFormProps> = ({ errorMessage, hand
             }}
             validationSchema={loginValidationSchema}
             onSubmit={(values, { setSubmitting }) => {
-
                 handleLogin(values.email, values.password).finally(() => setSubmitting(false));
             }}
         >
