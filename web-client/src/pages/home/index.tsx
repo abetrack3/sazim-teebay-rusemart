@@ -23,7 +23,7 @@ const HomePage = () => {
         }
 
     }
-    
+
     useEffect(() => { fetchMarketProducts(); }, []);
 
     const navigate = useNavigate();
@@ -45,18 +45,24 @@ const HomePage = () => {
             </div>
         );
     }
-    
+
     return (
         <>
             <div className="flex flex-col pt-12 justify-center items-center">
                 <div className="grid grid-cols-5 justify-center w-3/5">
-                    
-                        {!isAuthenticated && <Button variant='outlined' type='button' className="h-min max-w-max" onClick={() => navigate('/login')}>Sign In</Button>}
-                        <div className="flex justify-center mb-8 gap-3 col-start-2 col-span-3">
-                            <h1 className="text-3xl font-extrabold">MARKETPLACE</h1>
-                            {isAuthenticated && (<><Divider orientation="vertical" sx={{ borderRightWidth: 5}} flexItem />
-                            <Link to={'/my-product'}><h1 className="text-3xl ">MY PRODUCTS</h1></Link></>)}
-                        </div>
+
+                    {!isAuthenticated &&
+                        <Button variant='outlined' type='button' className="h-min max-w-max" onClick={() => navigate('/login')}>
+                            Sign In
+                        </Button>
+                    }
+                    <div className="flex justify-center mb-8 gap-3 col-start-2 col-span-3">
+                        <h1 className="text-3xl font-extrabold">MARKETPLACE</h1>
+                        {isAuthenticated && (<>
+                            <Divider orientation="vertical" sx={{ borderRightWidth: 5 }} flexItem />
+                            <Link to={'/my-product'}><h1 className="text-3xl ">MY PRODUCTS</h1></Link>
+                        </>)}
+                    </div>
 
                 </div>
 
