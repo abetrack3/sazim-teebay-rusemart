@@ -35,7 +35,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, actionsEnabled, call
         <>
             <Card variant='outlined' className='m-3 w-full relative' >
             <div onClick={(e) => {
-                console.log('wassup');
                 e.preventDefault();
                 e.stopPropagation();
                 handleOnClickEvent();

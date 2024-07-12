@@ -33,7 +33,6 @@ export const EditProductForm: React.FC<EditProductFormProps> = ({ product }) => 
                 }}
                 validationSchema={productFormValidationSchema}
                 onSubmit={values => {
-                    console.log(values);
                     updateProduct(values as Product);
                 }}
             >

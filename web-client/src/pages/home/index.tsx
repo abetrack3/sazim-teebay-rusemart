@@ -31,7 +31,6 @@ const HomePage = () => {
     const { isAuthenticated } = useAuthState();
 
     const navigateToProductDetails = (productId: string) => {
-        console.log('getting called alright!');
         navigate(`/product/${productId}`)
     };
 
