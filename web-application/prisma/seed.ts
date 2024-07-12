@@ -6,7 +6,7 @@ const prisma: PrismaClient = new PrismaClient();
 
 const main = async () => {
 
-    await prisma.user.create({ data: { ...seedUser }});
+    await prisma.user.createMany({ data: seedUser });
 
     await prisma.product.create({ data: { ...seedProduct }});
 }
