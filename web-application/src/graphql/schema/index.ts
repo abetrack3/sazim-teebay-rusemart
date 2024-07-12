@@ -23,6 +23,25 @@ type Product {
     rentOption: String!
     ownerId: String!
     owner: User
+    isSold: Boolean
+    purchaseId: String
+}
+
+type Purchase {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  sellerId: String!
+  buyerId: String!
+  productId: String!
+  purchasePriceAtTimeOfTransaction: Float!
+  rentPriceAtTimeOfTransaction: Float!
+  rentOptionAtTimeOfTransaction: String!
+}
+
+type PurchaseResult {
+  updatedProduct: Product
+  newPurchase: Purchase
 }
 
 type Query {
@@ -67,6 +86,15 @@ type Mutation {
     rentPrice: Float!,
     rentOption: String!,
   ): Product
+
+  purchaseProduct(
+    sellerId: String!,
+    buyerId: String!,
+    productId: String!,
+    purchasePriceAtTimeOfTransaction: Float!,
+    rentPriceAtTimeOfTransaction: Float!,
+    rentOptionAtTimeOfTransaction: String!
+  ): PurchaseResult
     
 }
 `;

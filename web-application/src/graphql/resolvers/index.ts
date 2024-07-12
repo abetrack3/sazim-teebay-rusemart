@@ -12,6 +12,7 @@ import { createUser, getUserExistsByEmail } from "../../services/user.service";
 import { getAuthToken } from "../../services/auth.service";
 import { ApplicationContext, ProductPurchaseParameter } from '../../common/model';
 import { requiresAuthenticatedUser } from '../../middlewares/auth.middleware';
+import { purchaseProduct } from '../../services/product-purchase.service';
 
 export const resolvers = {
     Query: {
@@ -37,5 +38,6 @@ export const resolvers = {
         createProduct: async (_: never, product: Product, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => createProduct(context.authenticatedUser?.id as string, product)),
         deleteProductById: async (_: never, args: {productId: string}, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => deleteProductById(args.productId, context.authenticatedUser?.id as string)) ? true : false,
         updateProduct: async (_: never, product: Product, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => updateProductByIdAndOwnerId(product.id, product, context.authenticatedUser?.id as string)),
+        purchaseProduct: async (_: never, purchaseParams: ProductPurchaseParameter, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => purchaseProduct(purchaseParams)),
     },
 };
