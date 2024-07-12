@@ -31,6 +31,7 @@ type Query {
     getAllUserProducts: [Product]
     getUserProductById(productId: String): Product
     getAllMarketAvailableProducts: [Product]
+    getMarketplaceProductById(productId: String): Product
 	
 }
 

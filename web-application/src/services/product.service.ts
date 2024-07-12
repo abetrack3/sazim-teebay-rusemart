@@ -6,4 +6,5 @@ export const getAllProductsByOwnerId = async (ownerId: string) => await prisma.p
 export const getUserProductByIdAndOwnerId = async (id: string, ownerId: string) => await prisma.product.findFirst({ where: { id, ownerId }});
 export const deleteProductById = async (id: string, ownerId: string) => await prisma.product.delete({where: { id, ownerId }});
 export const getAllMarketAvailableProducts = async () => await prisma.product.findMany();
-export const updateProductByIdandOwnerId = async (id: string, product: Product, ownerId: string) => await prisma.product.update({ where: { id, ownerId }, data: { ...product }});
+export const updateProductByIdAndOwnerId = async (id: string, product: Product, ownerId: string) => await prisma.product.update({ where: { id, ownerId }, data: { ...product }});
+export const getMarketplaceProductById = async (id: string) => await prisma.product.findFirst({ where: { id }});

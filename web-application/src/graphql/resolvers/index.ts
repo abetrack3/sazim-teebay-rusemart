@@ -1,4 +1,12 @@
-import { createProduct, deleteProductById, getAllMarketAvailableProducts, getAllProductsByOwnerId, getUserProductByIdAndOwnerId, updateProductByIdandOwnerId as updateProductByIdAndOwnerId } from './../../services/product.service';
+import {
+    createProduct,
+    deleteProductById,
+    getAllMarketAvailableProducts,
+    getAllProductsByOwnerId,
+    getMarketplaceProductById,
+    getUserProductByIdAndOwnerId,
+    updateProductByIdAndOwnerId,
+} from './../../services/product.service';
 import { Product, User } from "@prisma/client";
 import { createUser, getUserExistsByEmail } from "../../services/user.service";
 import { getAuthToken } from "../../services/auth.service";
@@ -11,6 +19,7 @@ export const resolvers = {
         // public apis
         getUserExistsByEmail: async (_: never, args: {email: string}) => await getUserExistsByEmail(args.email),
         getAllMarketAvailableProducts: async () => await getAllMarketAvailableProducts(),
+        getMarketplaceProductById: async (_: never, args: {productId: string}) => await getMarketplaceProductById(args.productId),
 
         // secured apis
         getAllUserProducts: async (_: never, __: never, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getAllProductsByOwnerId(context.authenticatedUser?.id as string)),
