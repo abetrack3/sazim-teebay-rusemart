@@ -10,6 +10,7 @@ export const DescriptionInputField = () => {
                     <>
                         <FixedTextArea
                             minRows={4}
+                            label="Description"
                             placeHolder="Description"
                             field={field}
                             form={form}
