@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const productCreateValidationSchema = yup.object({
+const productFormValidationSchema = yup.object({
 
     title: yup
         .string()
@@ -31,4 +31,4 @@ const productCreateValidationSchema = yup.object({
 
 });
 
-export default productCreateValidationSchema;
+export default productFormValidationSchema;
