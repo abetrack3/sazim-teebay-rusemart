@@ -1,15 +1,15 @@
 import { Button, Step, StepLabel, Stepper } from "@mui/material";
 import { Form, Formik } from "formik";
-import productCreateValidationSchema from "../../../../validators/product.create.form.validation.schema";
-import useMultiStepForm from "../../../../hooks/multi-step-form.hook";
-import { createProduct } from "../../../../services/product.service";
-import { Product } from "../../../../shared/types/product.types";
-import { RentOption } from "../../../../shared/constants/rent-option.const";
-import { ProductTitleStep } from "../steps/product-title.step";
-import { CategoriesStep } from "../steps/categories.step";
-import { DescriptionStep } from "../steps/description.step";
-import { PricingInfoStep } from "../steps/pricing-info.step";
-import { SummaryStep } from "../steps/summary.step";
+import productCreateValidationSchema from "../../../validators/product.create.form.validation.schema";
+import useMultiStepForm from "../../../hooks/multi-step-form.hook";
+import { createProduct } from "../../../services/product.service";
+import { Product } from "../../../shared/types/product.types";
+import { RentOption } from "../../../shared/constants/rent-option.const";
+import { ProductTitleStep } from "./steps/product-title.step";
+import { CategoriesStep } from "./steps/categories.step";
+import { DescriptionStep } from "./steps/description.step";
+import { PricingInfoStep } from "./steps/pricing-info.step";
+import { SummaryStep } from "./steps/summary.step";
 
 const CreateProductForm = () => {
 

@@ -1,7 +1,7 @@
 import { Field, FieldProps } from "formik";
-import SelectBasic from "../../../inputs/select-basic";
+import SelectBasic from "../../../ui/inputs/select-basic";
 import { RentOptions } from "../../../../shared/constants/rent-option.const";
-import StyledErrorMessage from "../../styled-error-message";
+import StyledErrorMessage from "../../../ui/feedback/styled-error-message";
 
 export const RentOptionInputField = () => {
     return (

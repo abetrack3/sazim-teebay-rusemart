@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material"
 import { Field } from "formik"
-import StyledErrorMessage from "../../styled-error-message";
+import StyledErrorMessage from "../../../ui/feedback/styled-error-message";
 
 const ProductTitleInput = () => {
 

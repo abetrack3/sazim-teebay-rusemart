@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import CreateProductForm from "../../components/forms/product/create/create-product.forms";
+import CreateProductForm from "../../components/forms/product/create-product.forms";
 import { useNavigate } from "react-router-dom";
 
 const CreateProductPage = () => {

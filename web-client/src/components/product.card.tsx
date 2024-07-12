@@ -1,7 +1,7 @@
 import { Card, CardActions, CardContent, IconButton, Typography } from '@mui/material';
 import { DeleteTwoTone, EditTwoTone } from "@mui/icons-material";
 import { Product } from '../shared/types/product.types';
-import ConfirmationDialog from './feedback/confirmation.dialog';
+import ConfirmationDialog from './ui/feedback/confirmation.dialog';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

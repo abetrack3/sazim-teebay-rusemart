@@ -1,6 +1,6 @@
 import { Field, FieldProps } from "formik"
-import NumberInput from "../../../inputs/number-input"
-import StyledErrorMessage from "../../styled-error-message";
+import NumberInput from "../../../ui/inputs/number-input"
+import StyledErrorMessage from "../../../ui/feedback/styled-error-message";
 
 export const PriceInputField: React.FC<{name: string, label: string, placeHolder: string}> = ({name, label, placeHolder}) => {
 

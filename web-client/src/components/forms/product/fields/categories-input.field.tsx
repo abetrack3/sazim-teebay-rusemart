@@ -1,7 +1,7 @@
 import { Field, FieldProps } from "formik"
 import { CategoryList } from "../../../../shared/constants/categories.const"
-import MultiSelectDropdownWithAutocomplete from "../../../inputs/multi-select-autocomplete"
-import StyledErrorMessage from "../../styled-error-message";
+import MultiSelectDropdownWithAutocomplete from "../../../ui/inputs/multi-select-autocomplete"
+import StyledErrorMessage from "../../../ui/feedback/styled-error-message";
 
 const CategoriesInputField = () => {
 
