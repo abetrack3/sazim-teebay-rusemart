@@ -37,3 +37,20 @@ query GetAllMarketAvailableProducts {
 }
 
 `;
+
+export const GET_USER_PRODUCT_BY_ID = gql`
+
+query GetUserProductById($productId: String) {
+  getUserProductById(productId: $productId) {
+    id
+    createdAt
+    updatedAt
+    title
+    categories
+    description
+    purchasePrice
+    rentPrice
+    rentOption
+    ownerId
+  }
+}`;
