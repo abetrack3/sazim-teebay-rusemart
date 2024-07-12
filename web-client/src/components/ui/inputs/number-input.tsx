@@ -25,11 +25,18 @@ const NumberInput = (fieldProps: FieldProps<number> & NumberInputProps) => {
                         (<InputAdornment position="start">{fieldProps.adornmentAtStart}</InputAdornment>)
                         : (<></>)
                     }
-                    label={fieldProps.placeHolder}
+                    label={fieldProps.label}
+                    placeholder={fieldProps.placeHolder}
                     onTouchEnd={() => fieldProps.form.setFieldTouched(fieldProps.field.name)}
                     onChange={event => {
                         fieldProps.form.setFieldTouched(fieldProps.field.name);
-                        fieldProps.form.setFieldValue(fieldProps.field.name, parseFloat(event.target.value));
+                        const parsedValue = parseFloat(event.target.value);
+                        if (parsedValue.toString() === 'NaN') {
+                            fieldProps.form.setFieldValue(fieldProps.field.name, 0);
+                            fieldProps.form.setFieldError(fieldProps.field.name, `${fieldProps.label} must be a 'number' type`)
+                        } else {
+                            fieldProps.form.setFieldValue(fieldProps.field.name, parsedValue);
+                        }
                     }}
                 />
             </FormControl>
