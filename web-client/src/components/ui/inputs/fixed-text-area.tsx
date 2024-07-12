@@ -1,68 +1,37 @@
-import styled from "@emotion/styled";
-import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
+import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
 import { FieldProps } from "formik";
-
 
 export interface TextAreaProps {
     minRows: number;
+    label: string;
     placeHolder: string;
     className: string;
 }
 
 const FixedTextArea = (fieldProps: FieldProps<string> & TextAreaProps) => {
 
-    
+
 
     return (
         <>
-            <TextareaAutosize
-                {...fieldProps.form}
-                {...fieldProps.field}
-                minRows={fieldProps.minRows}
-                placeholder={fieldProps.placeHolder}
-                onChange={fieldProps.form.handleChange}
-            />
+            <FormControl fullWidth className="m-1">
+                <InputLabel htmlFor={fieldProps.field.name}>{fieldProps.label}</InputLabel>
+                <OutlinedInput
+                    id={fieldProps.field.name}
+                    value={fieldProps.form.values[fieldProps.field.name] ?? 0}
+                    onTouchEnd={() => fieldProps.form.setFieldTouched(fieldProps.field.name)}
+                    onChange={event => {
+                        fieldProps.form.setFieldTouched(fieldProps.field.name);
+                        fieldProps.form.setFieldValue(fieldProps.field.name, event.target.value);
+                    }}
+                    label={fieldProps.label}
+                    placeholder={fieldProps.placeHolder}
+                    multiline={true}
+                    minRows={fieldProps.minRows}
+                />
+            </FormControl>
         </>
     );
 };
-
-const blue = {
-    200: '#b6daff',
-    400: '#3399FF',
-    500: '#007FFF',
-};
-
-const grey = {
-    50: '#F3F6F9',
-    200: '#DAE2ED',
-    900: '#1C2025',
-};
-
-const TextareaAutosize = styled(BaseTextareaAutosize)(() => `
-    box-sizing: border-box;
-    width: 100%;
-    resize: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    color: ${grey[900]};
-    background: ${'#fff'};
-    border: 1px solid ${grey[200]};
-    box-shadow: 0px 2px 2px ${grey[50]};
-
-    &:hover {
-        border-color: ${blue[400]};
-    }
-
-    &:focus {
-        border-color: ${blue[400]};
-        box-shadow: 0 0 0 3px ${blue[200]};
-    }
-
-    // firefox
-    &:focus-visible {
-        outline: 0;
-    }
-`,
-);
 
 export default FixedTextArea;
