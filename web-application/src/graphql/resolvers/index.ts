@@ -10,7 +10,7 @@ import {
 import { Product, User } from "@prisma/client";
 import { createUser, getUserExistsByEmail } from "../../services/user.service";
 import { getAuthToken } from "../../services/auth.service";
-import ApplicationContext from '../../common/model';
+import { ApplicationContext, ProductPurchaseParameter } from '../../common/model';
 import { requiresAuthenticatedUser } from '../../middlewares/auth.middleware';
 
 export const resolvers = {

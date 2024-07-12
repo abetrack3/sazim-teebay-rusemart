@@ -7,7 +7,7 @@ import http from 'http';
 import cors from 'cors';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import { expressMiddleware } from '@apollo/server/express4';
-import ApplicationContext from '../common/model';
+import { ApplicationContext } from '../common/model';
 
 export const initServer = async () => {
 

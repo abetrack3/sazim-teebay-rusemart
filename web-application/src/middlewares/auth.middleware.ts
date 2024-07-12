@@ -2,7 +2,7 @@ import { User } from "@prisma/client";
 import { Request } from "express";
 import { verifyToken } from '../services/auth.service';
 import * as jwt from "jsonwebtoken";
-import ApplicationContext from "../common/model";
+import { ApplicationContext } from "../common/model";
 import { GraphQLError } from "graphql";
 import { MonoFunction } from "../common/types";
 

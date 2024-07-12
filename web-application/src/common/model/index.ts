@@ -1,4 +1,4 @@
 import { User } from '@prisma/client';
-export default interface ApplicationContext {
+export interface ApplicationContext {
     authenticatedUser?: User;
 }
