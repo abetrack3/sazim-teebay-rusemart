@@ -1,4 +1,4 @@
-import { createProduct, deleteProductById, getAllMarketAvailableProducts, getAllProductsByOwnerId } from './../../services/product.service';
+import { createProduct, deleteProductById, getAllMarketAvailableProducts, getAllProductsByOwnerId, getUserProductByIdAndOwnerId, updateProductByIdandOwnerId as updateProductByIdAndOwnerId } from './../../services/product.service';
 import { Product, User } from "@prisma/client";
 import { createUser, getUserExistsByEmail } from "../../services/user.service";
 import { getAuthToken } from "../../services/auth.service";
@@ -13,7 +13,8 @@ export const resolvers = {
         getAllMarketAvailableProducts: async () => await getAllMarketAvailableProducts(),
 
         // secured apis
-        getAllUserProducts: async(_: never, __: never, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getAllProductsByOwnerId(context.authenticatedUser?.id as string)),
+        getAllUserProducts: async (_: never, __: never, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getAllProductsByOwnerId(context.authenticatedUser?.id as string)),
+        getUserProductById: async (_: never, { productId }: {productId: string}, context: ApplicationContext) => await requiresAuthenticatedUser(context, async () => getUserProductByIdAndOwnerId(productId, context.authenticatedUser?.id as string)),
 
     },
 
@@ -26,6 +27,6 @@ export const resolvers = {
         // secured apis
         createProduct: async (_: never, product: Product, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => createProduct(context.authenticatedUser?.id as string, product)),
         deleteProductById: async (_: never, args: {productId: string}, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => deleteProductById(args.productId, context.authenticatedUser?.id as string)) ? true : false,
-        
+        updateProduct: async (_: never, product: Product, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => updateProductByIdAndOwnerId(product.id, product, context.authenticatedUser?.id as string)),
     },
 };

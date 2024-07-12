@@ -29,6 +29,7 @@ type Query {
 
     getUserExistsByEmail(email: String): Boolean
     getAllUserProducts: [Product]
+    getUserProductById(productId: String): Product
     getAllMarketAvailableProducts: [Product]
 	
 }
@@ -36,11 +37,11 @@ type Query {
 type Mutation {
     
     createUser(
-		email: String!,
-		firstName: String!,
-		lastName: String!,
-		address: String!,
-		password: String!
+      email: String!,
+      firstName: String!,
+      lastName: String!,
+      address: String!,
+      password: String!
     ): User
 
     authToken(email: String!, password: String!): String
@@ -55,6 +56,16 @@ type Mutation {
 	): Product
 
   deleteProductById(productId: String!): Boolean
+
+  updateProduct(
+    id: String!,
+    title: String!,
+    categories: [String],
+    description: String!,
+    purchasePrice: Float!,
+    rentPrice: Float!,
+    rentOption: String!,
+  ): Product
     
 }
 `;
