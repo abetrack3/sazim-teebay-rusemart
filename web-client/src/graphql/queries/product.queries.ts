@@ -14,6 +14,8 @@ query GetAllUserProducts {
     rentPrice
     rentOption
     ownerId
+    isSold
+    purchaseId
   }
 }
 
@@ -33,6 +35,8 @@ query GetAllMarketAvailableProducts {
     rentPrice
     rentOption
     ownerId
+    isSold
+    purchaseId
   }
 }
 
@@ -52,6 +56,8 @@ query GetUserProductById($productId: String) {
     rentPrice
     rentOption
     ownerId
+    isSold
+    purchaseId
   }
 }`;
 
@@ -69,5 +75,7 @@ query GetMarketplaceProductById($productId: String) {
     rentPrice
     rentOption
     ownerId
+    isSold
+    purchaseId
   }
 }`;

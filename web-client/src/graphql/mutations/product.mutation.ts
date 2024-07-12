@@ -17,6 +17,8 @@ mutation CreateProduct($title: String!, $purchasePrice: Float!, $rentPrice: Floa
     purchasePrice
     rentPrice
     rentOption
+    isSold
+    purchaseId
   }
 }
 
@@ -36,5 +38,7 @@ mutation UpdateProduct($id: String!, $title: String!, $description: String!, $pu
     rentPrice
     rentOption
     ownerId
+    isSold
+    purchaseId
   }
 }`;

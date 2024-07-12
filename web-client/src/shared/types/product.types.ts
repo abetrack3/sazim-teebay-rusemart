@@ -9,4 +9,6 @@ export type Product = {
     rentPrice: number;
     rentOption: string;
     ownerId: string;
+    isSold: boolean;
+    purchaseId?: string;
 }
