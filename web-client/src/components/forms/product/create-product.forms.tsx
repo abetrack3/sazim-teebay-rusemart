@@ -1,6 +1,6 @@
 import { Button, Step, StepLabel, Stepper } from "@mui/material";
 import { Form, Formik } from "formik";
-import productCreateValidationSchema from "../../../validators/product.create.form.validation.schema";
+import productFormValidationSchema from "../../../validators/product.form.validation.schema";
 import useMultiStepForm from "../../../hooks/multi-step-form.hook";
 import { createProduct } from "../../../services/product.service";
 import { Product } from "../../../shared/types/product.types";
@@ -51,7 +51,7 @@ const CreateProductForm = () => {
                     rentOption: RentOption.PER_DAY,
                 }}
                 onSubmit={e => createProduct(e as unknown as Product)}
-                validationSchema={productCreateValidationSchema}
+                validationSchema={productFormValidationSchema}
             >
                 {({ isValid }) => (
                     <Form>
