@@ -14,7 +14,16 @@ export const authMiddleware = (request: Request): ApplicationContext => {
         return { authenticatedUser: undefined };
     }
 
-    verifyToken(token);
+    const verified = verifyToken(token);
+    if (verified === false) {
+        throw new GraphQLError('User is not authenticated', {
+            extensions: {
+                code: 'Unautheticated',
+                http: { status: 401 },
+            },
+        });
+    }
+
     const authenticatedUser: User = jwt.decode(token) as User;
     return { authenticatedUser };                
 
