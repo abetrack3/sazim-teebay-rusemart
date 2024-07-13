@@ -28,8 +28,6 @@ const HomePage = () => {
 
     const navigate = useNavigate();
 
-    const { isAuthenticated } = useAuthState();
-
     const navigateToProductDetails = (productId: string) => {
         navigate(`/product/${productId}`)
     };
