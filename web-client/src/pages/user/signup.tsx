@@ -5,7 +5,7 @@ import { UserSignupForm } from "../../components/forms/user/user-signup.forms";
 const SignupPage = () => {
 
     return (
-        <div className="flex flex-col h-full justify-center items-center">
+        <div className="flex flex-col h-screen justify-center items-center">
             <h1 className="text-3xl mb-2">SIGN UP</h1>
             <Box
                 component='section'

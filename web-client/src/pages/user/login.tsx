@@ -27,7 +27,7 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="flex flex-col h-full justify-center items-center">
+        <div className="flex flex-col h-screen justify-center items-center">
             <h1 className="text-3xl mb-2">LOG IN</h1>
             <Box
                 component='section'
