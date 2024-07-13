@@ -5,9 +5,17 @@ export interface ApplicationContext {
 
 export interface ProductPurchaseParameter {
     sellerId: string;
-    // buyerId: string;
     productId: string;
     purchasePriceAtTimeOfTransaction: number;
     rentPriceAtTimeOfTransaction: number;
-    rentOptionAtTimeOfTransaction: string
+    rentOptionAtTimeOfTransaction: string;
+}
+
+export interface ProductRentParameter {
+    offererId: string;
+    productId: string;
+    toDateAsString: string;
+    fromDateAsString: string;
+    rentPriceAtTimeOfTransaction: number;
+    rentOptionAtTimeOfTransaction: string;
 }

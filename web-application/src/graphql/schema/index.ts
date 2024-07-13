@@ -39,6 +39,19 @@ type Purchase {
   rentOptionAtTimeOfTransaction: String!
 }
 
+type ProductRentals {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  rentedFromId: String!
+  rentedToId: String!
+  productId: String!
+  rentTimelineStart: String!
+  rentTimelineEnd: String!
+  rentPriceAtTimeOfTransaction: Float!
+  rentOptionAtTimeOfTransaction: String!
+}
+
 type PurchaseResult {
   updatedProduct: Product
   newPurchase: Purchase
@@ -53,6 +66,11 @@ type Query {
     getMarketplaceProductById(productId: String): Product
     getUserPurchasedProducts: [Product]
     getUserSoldProducts: [Product]
+    getRentTimelineOverlapExist(
+      productId: String!,
+      fromDateAsString: String!,
+      toDateAsString: String!
+    ): Boolean
 	
 }
 
@@ -91,12 +109,20 @@ type Mutation {
 
   purchaseProduct(
     sellerId: String!,
-    # buyerId: String!,
     productId: String!,
     purchasePriceAtTimeOfTransaction: Float!,
     rentPriceAtTimeOfTransaction: Float!,
     rentOptionAtTimeOfTransaction: String!
   ): PurchaseResult
+
+  rentProduct(
+    offererId: String!,
+    productId: String!,
+    toDateAsString: String!,
+    fromDateAsString: String!,
+    rentPriceAtTimeOfTransaction: Float!,
+    rentOptionAtTimeOfTransaction: String!
+  ): ProductRentals
     
 }
 `;

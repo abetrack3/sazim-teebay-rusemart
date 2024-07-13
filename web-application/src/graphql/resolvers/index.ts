@@ -10,9 +10,10 @@ import {
 import { Product, User } from "@prisma/client";
 import { createUser, getUserExistsByEmail } from "../../services/user.service";
 import { getAuthToken } from "../../services/auth.service";
-import { ApplicationContext, ProductPurchaseParameter } from '../../common/model';
+import { ApplicationContext, ProductPurchaseParameter, ProductRentParameter } from '../../common/model';
 import { requiresAuthenticatedUser } from '../../middlewares/auth.middleware';
 import { getUserPurchasedProducts, getUserSoldProducts, purchaseProduct } from '../../services/product-purchase.service';
+import { getRentTimelineOverlapExist, rentProduct } from '../../services/product-rentals.service';
 
 export const resolvers = {
     Query: {
@@ -27,6 +28,7 @@ export const resolvers = {
         getUserProductById: async (_: never, { productId }: {productId: string}, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getUserProductByIdAndOwnerId(productId, context.authenticatedUser?.id as string)),
         getUserPurchasedProducts: async (_: never, __: never, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getUserPurchasedProducts(context.authenticatedUser?.id as string)),
         getUserSoldProducts: async (_: never, __: never, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getUserSoldProducts(context.authenticatedUser?.id as string)),
+        getRentTimelineOverlapExist: async (_: never, args: {productId: string, fromDateAsString: string, toDateAsString: string}, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getRentTimelineOverlapExist(args.productId, args.fromDateAsString, args.toDateAsString)),
 
     },
 
@@ -41,5 +43,6 @@ export const resolvers = {
         deleteProductById: async (_: never, args: {productId: string}, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => deleteProductById(args.productId, context.authenticatedUser?.id as string)) ? true : false,
         updateProduct: async (_: never, product: Product, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => updateProductByIdAndOwnerId(product.id, product, context.authenticatedUser?.id as string)),
         purchaseProduct: async (_: never, purchaseParams: ProductPurchaseParameter, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => purchaseProduct(context.authenticatedUser?.id as string, purchaseParams)),
+        rentProduct: async (_: never, rentParams: ProductRentParameter, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => rentProduct(context.authenticatedUser?.id as string, rentParams)),
     },
 };
