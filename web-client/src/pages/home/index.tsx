@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { getAllMarketAvailableProducts } from "../../services/product.service";
 import { useState, useEffect } from "react";
 import { Product } from "../../shared/types/product.types";
-import { useAuthState } from "../../hooks/useAuthState.hook";
 import { ProductList } from "../../components/product.list";
 
 const HomePage = () => {

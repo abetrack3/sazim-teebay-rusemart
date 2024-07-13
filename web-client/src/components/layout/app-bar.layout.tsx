@@ -1,5 +1,4 @@
-import { MenuTwoTone } from "@mui/icons-material";
-import { AppBar, Button, IconButton, Toolbar } from "@mui/material";
+import { AppBar, Button, Toolbar } from "@mui/material";
 import { useAuthState } from "../../hooks/useAuthState.hook";
 import { useNavigate } from "react-router-dom";
 

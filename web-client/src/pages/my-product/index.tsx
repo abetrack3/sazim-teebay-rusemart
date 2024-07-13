@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { deleteProductById, getAllUserProducts } from '../../services/product.service';
 import { Product } from '../../shared/types/product.types';
 import { Button, CircularProgress } from '@mui/material';
-import { useAuthState } from '../../hooks/useAuthState.hook';
 import { useNavigate } from 'react-router-dom';
 import { ProductList } from '../../components/product.list';
 
@@ -27,8 +26,6 @@ const MyProduct = () => {
     useEffect(() => { fetchProducts(); }, []);
 
     const navigate = useNavigate();
-
-    const { logout } = useAuthState();
 
     const deleteProduct = async (productId: string) => {
 
