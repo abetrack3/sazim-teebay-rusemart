@@ -5,11 +5,11 @@ import { generateUUID } from "../utils/uuid";
 import { Decimal } from "@prisma/client/runtime/library";
 import { ProductPurchaseParameter } from "../common/model";
 
-type purchaseProductHandlerType = (purchaseParams: ProductPurchaseParameter) => Promise<{ updatedProduct?: Product, newPurchase?: Purchase }>;
+type PurchaseProductHandlerType = (buyerId: string, purchaseParams: ProductPurchaseParameter) => Promise<{ updatedProduct?: Product, newPurchase?: Purchase }>;
 
-export const purchaseProduct: purchaseProductHandlerType = async ({
+export const purchaseProduct: PurchaseProductHandlerType = async (buyerId, {
     sellerId,
-    buyerId,
+    // buyerId,
     productId,
     purchasePriceAtTimeOfTransaction,
     rentOptionAtTimeOfTransaction,

@@ -89,7 +89,7 @@ type Mutation {
 
   purchaseProduct(
     sellerId: String!,
-    buyerId: String!,
+    # buyerId: String!,
     productId: String!,
     purchasePriceAtTimeOfTransaction: Float!,
     rentPriceAtTimeOfTransaction: Float!,

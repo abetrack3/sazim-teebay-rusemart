@@ -5,7 +5,7 @@ export interface ApplicationContext {
 
 export interface ProductPurchaseParameter {
     sellerId: string;
-    buyerId: string;
+    // buyerId: string;
     productId: string;
     purchasePriceAtTimeOfTransaction: number;
     rentPriceAtTimeOfTransaction: number;
