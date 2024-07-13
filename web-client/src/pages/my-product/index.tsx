@@ -41,8 +41,6 @@ const MyProduct = () => {
 
         await deleteProductById(productId);
 
-        await apolloClient.clearStore();
-
         await fetchProducts();
     };
 

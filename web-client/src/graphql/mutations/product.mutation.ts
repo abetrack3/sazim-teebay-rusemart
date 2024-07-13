@@ -42,3 +42,35 @@ mutation UpdateProduct($id: String!, $title: String!, $description: String!, $pu
     purchaseId
   }
 }`;
+
+export const PURCHASE_PRODUCT = gql`
+
+mutation PurchaseProduct($sellerId: String!, $productId: String!, $purchasePriceAtTimeOfTransaction: Float!, $rentPriceAtTimeOfTransaction: Float!, $rentOptionAtTimeOfTransaction: String!) {
+  purchaseProduct(sellerId: $sellerId, productId: $productId, purchasePriceAtTimeOfTransaction: $purchasePriceAtTimeOfTransaction, rentPriceAtTimeOfTransaction: $rentPriceAtTimeOfTransaction, rentOptionAtTimeOfTransaction: $rentOptionAtTimeOfTransaction) {
+    updatedProduct {
+      id
+      createdAt
+      updatedAt
+      title
+      categories
+      description
+      purchasePrice
+      rentPrice
+      rentOption
+      ownerId
+      isSold
+      purchaseId
+    }
+    newPurchase {
+      id
+      createdAt
+      updatedAt
+      sellerId
+      buyerId
+      productId
+      purchasePriceAtTimeOfTransaction
+      rentPriceAtTimeOfTransaction
+      rentOptionAtTimeOfTransaction
+    }
+  }
+}`;

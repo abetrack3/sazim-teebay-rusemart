@@ -1,5 +1,5 @@
 import apolloClient from "../graphql/client"
-import { CREATE_PRODUCT, DELETE_PRODUCT_BY_ID, UPDATE_PRODUCT } from "../graphql/mutations/product.mutation";
+import { CREATE_PRODUCT, DELETE_PRODUCT_BY_ID, PURCHASE_PRODUCT, UPDATE_PRODUCT } from "../graphql/mutations/product.mutation";
 import { GET_ALL_MARKET_AVAILABLE_PRODUCTS, GET_ALL_USER_PRODUCTS, GET_MARKETPLACE_PRODUCT_BY_ID, GET_USER_PRODUCT_BY_ID } from "../graphql/queries/product.queries"
 import { Product } from "../shared/types/product.types";
 
@@ -16,6 +16,8 @@ export const deleteProductById = async (productId: string) => {
         mutation: DELETE_PRODUCT_BY_ID,
         variables: { productId },
     });
+
+    await apolloClient.clearStore();
 
     return data.deleteProductById as boolean;
 }
@@ -72,3 +74,22 @@ export const getMarketplaceProductById = async (productId: string) => {
 
     return data.getMarketplaceProductById as Product;
 };
+
+export const purchaseProduct = async (product: Product) => {
+
+    const { data } = await apolloClient.mutate({
+        mutation: PURCHASE_PRODUCT,
+        variables: {
+            sellerId: product.ownerId,
+            productId: product.id,
+            purchasePriceAtTimeOfTransaction: product.purchasePrice,
+            rentPriceAtTimeOfTransaction: product.rentPrice,
+            rentOptionAtTimeOfTransaction: product.rentOption,
+        }
+    });
+
+    await apolloClient.clearStore();
+
+    return data.updatedProduct && data.newPurchase;
+
+}
