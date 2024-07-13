@@ -112,3 +112,36 @@ query GetUserProductsWithPurchasedRecords {
     purchaseId
   }
 }`;
+
+export const GET_USER_BORROWED_AND_LENT_PRODUCTS = gql`
+
+query GetUserProductsWithRentalRecords {
+  getUserBorrowedProducts {
+    id
+    createdAt
+    updatedAt
+    title
+    categories
+    description
+    purchasePrice
+    rentPrice
+    rentOption
+    ownerId
+    isSold
+    purchaseId
+  }
+  getUserOfferedProducts {
+    id
+    createdAt
+    updatedAt
+    title
+    categories
+    description
+    purchasePrice
+    rentPrice
+    rentOption
+    ownerId
+    isSold
+    purchaseId
+  }
+}`;

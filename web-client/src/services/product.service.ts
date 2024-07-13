@@ -1,6 +1,6 @@
 import apolloClient from "../graphql/client"
 import { CREATE_PRODUCT, DELETE_PRODUCT_BY_ID, PURCHASE_PRODUCT, RENT_PRODUCT, UPDATE_PRODUCT } from "../graphql/mutations/product.mutation";
-import { GET_ALL_MARKET_AVAILABLE_PRODUCTS, GET_ALL_USER_PRODUCTS, GET_MARKETPLACE_PRODUCT_BY_ID, GET_USER_PRODUCT_BY_ID, GET_USER_PURCHASED_AND_SOLD_PRODUCTS } from "../graphql/queries/product.queries"
+import { GET_ALL_MARKET_AVAILABLE_PRODUCTS, GET_ALL_USER_PRODUCTS, GET_MARKETPLACE_PRODUCT_BY_ID, GET_USER_BORROWED_AND_LENT_PRODUCTS, GET_USER_PRODUCT_BY_ID, GET_USER_PURCHASED_AND_SOLD_PRODUCTS } from "../graphql/queries/product.queries"
 import { Product } from "../shared/types/product.types";
 import { ProductRentals } from "../shared/types/rental.types";
 
@@ -110,6 +110,17 @@ export const getUserPurchasedAndSoldProducts = async () => {
 
 }
 
+export const getUserBorrowedAndLentProducts = async () => {
+    const { data } = await apolloClient.query({
+        query: GET_USER_BORROWED_AND_LENT_PRODUCTS,
+    });
+
+    const borrowedProducts: Product[] = data.getUserBorrowedProducts;
+    const offeredProducts: Product[] = data.getUserOfferedProducts;
+
+    return { borrowedProducts, offeredProducts };
+}
+
 export const rentProduct = async (product: Product, fromDate: Date, toDate: Date) => {
 
     const { data } = await apolloClient.mutate({
@@ -123,6 +134,8 @@ export const rentProduct = async (product: Product, fromDate: Date, toDate: Date
             rentOptionAtTimeOfTransaction: product.rentOption,
         }
     });
+
+    await apolloClient.resetStore();
 
     return data.rentProduct as ProductRentals;
 
