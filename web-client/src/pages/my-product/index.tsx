@@ -3,9 +3,8 @@ import { deleteProductById, getAllUserProducts } from '../../services/product.se
 import { Product } from '../../shared/types/product.types';
 import { Button, CircularProgress } from '@mui/material';
 import { useAuthState } from '../../hooks/useAuthState.hook';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ProductList } from '../../components/product.list';
-import { VerticalDivider } from '../../components/ui/vertical-divider';
 
 const MyProduct = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -63,17 +62,13 @@ const MyProduct = () => {
     return (
         <>
             <div className="flex flex-col pt-12 justify-center items-center">
-                <div className="flex justify-between w-3/5">
+                <div className="grid grid-cols-5 justify-between w-3/5">
 
-                    <Button variant='outlined' color='primary' type='button' className='h-min' onClick={() => navigate('create')}>Add Product</Button>
+                    <Button variant='outlined' color='primary' type='button' className='h-min max-w-max' onClick={() => navigate('create')}>Add Product</Button>
 
-                    <div className="flex justify-center mb-8 gap-3">
-                        <Link to={'/'}><h1 className="text-3xl">MARKETPLACE</h1></Link>
-                        <VerticalDivider />
+                    <div className="flex justify-center mb-8 gap-3 col-start-2 col-span-3">
                         <h1 className="text-3xl font-extrabold">MY PRODUCTS</h1>
                     </div>
-
-                    <Button variant='outlined' color='error' type='button' className='h-min' onClick={logout}>Log out</Button>
 
                 </div>
 

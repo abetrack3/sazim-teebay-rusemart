@@ -1,11 +1,10 @@
-import { Button, CircularProgress } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { getAllMarketAvailableProducts } from "../../services/product.service";
 import { useState, useEffect } from "react";
 import { Product } from "../../shared/types/product.types";
 import { useAuthState } from "../../hooks/useAuthState.hook";
 import { ProductList } from "../../components/product.list";
-import { VerticalDivider } from "../../components/ui/vertical-divider";
 
 const HomePage = () => {
 
@@ -56,17 +55,8 @@ const HomePage = () => {
             <div className="flex flex-col pt-12 justify-center items-center">
                 <div className="grid grid-cols-5 justify-center w-3/5">
 
-                    {!isAuthenticated &&
-                        <Button variant='outlined' type='button' className="h-min max-w-max" onClick={() => navigate('/login')}>
-                            Sign In
-                        </Button>
-                    }
                     <div className="flex justify-center mb-8 gap-3 col-start-2 col-span-3">
                         <h1 className="text-3xl font-extrabold">MARKETPLACE</h1>
-                        {isAuthenticated && (<>
-                            <VerticalDivider />
-                            <Link to={'/my-product'}><h1 className="text-3xl ">MY PRODUCTS</h1></Link>
-                        </>)}
                     </div>
 
                 </div>
