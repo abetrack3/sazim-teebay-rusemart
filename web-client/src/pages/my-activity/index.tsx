@@ -2,19 +2,23 @@ import { Box, Tabs, Tab, CircularProgress } from "@mui/material";
 import { useTabs } from "../../hooks/use-tabs.hook";
 import { useEffect, useState } from "react";
 import { Product } from "../../shared/types/product.types";
-import { getUserPurchasedAndSoldProducts } from "../../services/product.service";
-import { PurchasedProductsTab, SoldProductsTab } from "./products.tab";
+import { getUserBorrowedAndLentProducts, getUserPurchasedAndSoldProducts } from "../../services/product.service";
+import { BorrowedProductsTab, OfferedProductsTab, PurchasedProductsTab, SoldProductsTab } from "./products.tab";
 
 export const MyActivityPage = () => {
 
     
     const [purchasedProducts, setPurchasedProducts] = useState<Product[]>([]);
     const [soldProducts, setSoldProducts] = useState<Product[]>([]);
+    const [borrowedProducts, setBorrwedProducts] = useState<Product[]>([]);
+    const [offeredProducts, setOfferedProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');    
     const {currentTabIndex, handleTabChange, currentTab} = useTabs([
         <PurchasedProductsTab products={purchasedProducts} />,
         <SoldProductsTab products={soldProducts} />,
+        <BorrowedProductsTab products={borrowedProducts} />,
+        <OfferedProductsTab products={offeredProducts} />,
     ]);
     
     const fetchProducts = async () => {        
@@ -22,6 +26,9 @@ export const MyActivityPage = () => {
             const { purchasedProducts, soldProducts } = await getUserPurchasedAndSoldProducts();
             setPurchasedProducts(purchasedProducts);
             setSoldProducts(soldProducts);
+            const { borrowedProducts, offeredProducts } = await getUserBorrowedAndLentProducts();
+            setBorrwedProducts(borrowedProducts);
+            setOfferedProducts(offeredProducts);
         } catch (error) {
             setError('Failed to fetch products');
         } finally {
@@ -56,6 +63,8 @@ export const MyActivityPage = () => {
                 <Tabs value={currentTabIndex} onChange={handleTabChange} variant="fullWidth">
                     <Tab label="Purchased" />
                     <Tab label="Sold" />
+                    <Tab label="Borrowed" />
+                    <Tab label="Lent" />
                 </Tabs>
             </Box>
             {currentTab}

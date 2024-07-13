@@ -33,3 +33,21 @@ export const SoldProductsTab: React.FC<{ products: Product[] }> = ({ products })
         productListEmptyText="You aven't sold any product yet"
     />
 };
+
+export const BorrowedProductsTab: React.FC<{ products: Product[] }> = ({ products }) => {
+
+    return <ProductsTab
+        products={products}
+        productListEmptyText="You haven't borrowed any product yet"
+    />
+};
+
+export const OfferedProductsTab: React.FC<{ products: Product[] }> = ({ products }) => {
+
+    return <ProductsTab
+        products={products}
+        productListEmptyText="You haven't offered any product yet"
+    />
+};
+
+
