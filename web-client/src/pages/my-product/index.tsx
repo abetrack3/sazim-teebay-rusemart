@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { deleteProductById, getAllUserProducts } from '../../services/product.service';
 import { Product } from '../../shared/types/product.types';
-import { Button, CircularProgress, Divider } from '@mui/material';
-import apolloClient from '../../graphql/client';
+import { Button, CircularProgress } from '@mui/material';
 import { useAuthState } from '../../hooks/useAuthState.hook';
 import { Link, useNavigate } from 'react-router-dom';
 import { ProductList } from '../../components/product.list';
+import { VerticalDivider } from '../../components/ui/vertical-divider';
 
 const MyProduct = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -69,7 +69,7 @@ const MyProduct = () => {
 
                     <div className="flex justify-center mb-8 gap-3">
                         <Link to={'/'}><h1 className="text-3xl">MARKETPLACE</h1></Link>
-                        <Divider orientation="vertical" sx={{ borderRightWidth: 5 }} flexItem />
+                        <VerticalDivider />
                         <h1 className="text-3xl font-extrabold">MY PRODUCTS</h1>
                     </div>
 

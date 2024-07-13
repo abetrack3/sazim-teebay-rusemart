@@ -1,10 +1,11 @@
-import { Button, CircularProgress, Divider } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { getAllMarketAvailableProducts } from "../../services/product.service";
 import { useState, useEffect } from "react";
 import { Product } from "../../shared/types/product.types";
 import { useAuthState } from "../../hooks/useAuthState.hook";
 import { ProductList } from "../../components/product.list";
+import { VerticalDivider } from "../../components/ui/vertical-divider";
 
 const HomePage = () => {
 
@@ -63,7 +64,7 @@ const HomePage = () => {
                     <div className="flex justify-center mb-8 gap-3 col-start-2 col-span-3">
                         <h1 className="text-3xl font-extrabold">MARKETPLACE</h1>
                         {isAuthenticated && (<>
-                            <Divider orientation="vertical" sx={{ borderRightWidth: 5 }} flexItem />
+                            <VerticalDivider />
                             <Link to={'/my-product'}><h1 className="text-3xl ">MY PRODUCTS</h1></Link>
                         </>)}
                     </div>
