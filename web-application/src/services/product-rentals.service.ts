@@ -1,4 +1,4 @@
-import { ProductRentals } from "@prisma/client";
+import { Product, ProductRentals } from "@prisma/client";
 import { ProductRentParameter } from "../common/model";
 import prisma from "../utils/prisma.client";
 import { getUserProductByIdAndOwnerId } from "./product.service";
@@ -28,7 +28,7 @@ export const getRentTimelineOverlapExist = async (productId: string, fromDateAsS
 
     return !!overlappingRental;
 
-}
+};
 
 type RentProductHandlerType = (borrowerId: string, rentParams: ProductRentParameter) => Promise<ProductRentals | null>;
 
@@ -68,4 +68,25 @@ export const rentProduct: RentProductHandlerType = async (borrowerId: string, {o
 
     return result;
 
+};
+
+export const getUserProductsWithRentalRecords = async (userId: string, rentalRecordType: 'borrowed' | 'offered') => {
+
+    const filter = rentalRecordType === 'borrowed' ? { rentedToId: userId } : { rentedFromId : userId };
+
+    const userRentalRecords = await prisma.productRentals.findMany({
+        where: filter,
+        include: {
+            product: true,
+        },
+    });
+
+    const products: Product[] = userRentalRecords.map(rental => rental.product);
+
+    return products;
+
 }
+
+export const getUserBorrowedProducts = async (userId: string) => getUserProductsWithRentalRecords(userId, 'borrowed');
+
+export const getUserOfferedProducts = async (userId: string) => getUserProductsWithRentalRecords(userId, 'offered');

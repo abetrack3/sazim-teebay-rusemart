@@ -66,6 +66,8 @@ type Query {
     getMarketplaceProductById(productId: String): Product
     getUserPurchasedProducts: [Product]
     getUserSoldProducts: [Product]
+    getUserBorrowedProducts: [Product]
+    getUserOfferedProducts: [Product]
     getRentTimelineOverlapExist(
       productId: String!,
       fromDateAsString: String!,
