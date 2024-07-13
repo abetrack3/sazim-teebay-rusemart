@@ -9,6 +9,7 @@ import CreateProductPage from "./pages/my-product/create";
 import EditProductPage from "./pages/my-product/edit";
 import RequireAuth from "./components/auth/require-auth";
 import { ProductDetailsPage } from "./pages/marketplace/product-details";
+import { MyActivityPage } from "./pages/my-activity";
 
 const routes: RouteObject[] = [
 	{ path: 'login', element: <LoginPage /> },
@@ -22,6 +23,7 @@ const routes: RouteObject[] = [
             { path: 'my-product', element: <RequireAuth> <MyProduct /> </RequireAuth>},
 			{ path: 'my-product/create', element: <RequireAuth> <CreateProductPage /> </RequireAuth>},
 			{ path: 'my-product/edit/:productId', element: <RequireAuth> <EditProductPage /> </RequireAuth>},
+			{ path: 'my-activity', element: <RequireAuth> <MyActivityPage /> </RequireAuth> },
 			{ path: "*", element: <Error404Page /> },
 		],
 	}

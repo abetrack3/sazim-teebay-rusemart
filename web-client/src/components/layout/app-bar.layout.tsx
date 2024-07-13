@@ -21,9 +21,9 @@ export const TopNavBar = () => {
                                 <Button sx={{ color: 'primary', display: 'block'}} onClick={() => navigate('/my-product')}>
                                     My Products
                                 </Button>
-                                {/* <Button sx={{ color: 'primary', display: 'block'}}>
+                                <Button sx={{ color: 'primary', display: 'block'}} onClick={() => navigate('/my-activity')}>
                                     My Activity
-                                </Button> */}
+                                </Button>
                             </>}
                         </div>
 
