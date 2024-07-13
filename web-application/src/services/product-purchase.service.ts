@@ -57,3 +57,24 @@ export const purchaseProduct: PurchaseProductHandlerType = async (buyerId, {
     return { updatedProduct, newPurchase };
 
 }
+
+const getUserProductsWithPurchaseRecords = async (userId: string, purchaseRecordType: 'purchase' | 'sale') => {
+
+    const fitler = purchaseRecordType === 'purchase' ? {buyerId: userId} : {sellerId: userId};
+
+    const userPurchasesRecords = await prisma.purchase.findMany({
+        where: fitler,
+        include: {
+            product: true
+        }
+    });
+
+    const products: Product[] = userPurchasesRecords.map(purchase => purchase.product);
+
+    return products;
+
+}
+
+export const getUserPurchasedProducts = async (userId: string) => getUserProductsWithPurchaseRecords(userId, 'purchase');
+
+export const getUserSoldProducts = async (userId: string) => getUserProductsWithPurchaseRecords(userId, 'sale');

@@ -12,7 +12,7 @@ import { createUser, getUserExistsByEmail } from "../../services/user.service";
 import { getAuthToken } from "../../services/auth.service";
 import { ApplicationContext, ProductPurchaseParameter } from '../../common/model';
 import { requiresAuthenticatedUser } from '../../middlewares/auth.middleware';
-import { purchaseProduct } from '../../services/product-purchase.service';
+import { getUserPurchasedProducts, getUserSoldProducts, purchaseProduct } from '../../services/product-purchase.service';
 
 export const resolvers = {
     Query: {
@@ -24,7 +24,9 @@ export const resolvers = {
 
         // secured apis
         getAllUserProducts: async (_: never, __: never, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getAllProductsByOwnerId(context.authenticatedUser?.id as string)),
-        getUserProductById: async (_: never, { productId }: {productId: string}, context: ApplicationContext) => await requiresAuthenticatedUser(context, async () => getUserProductByIdAndOwnerId(productId, context.authenticatedUser?.id as string)),
+        getUserProductById: async (_: never, { productId }: {productId: string}, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getUserProductByIdAndOwnerId(productId, context.authenticatedUser?.id as string)),
+        getUserPurchasedProducts: async (_: never, __: never, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getUserPurchasedProducts(context.authenticatedUser?.id as string)),
+        getUserSoldProducts: async (_: never, __: never, context: ApplicationContext) => await requiresAuthenticatedUser(context, () => getUserSoldProducts(context.authenticatedUser?.id as string)),
 
     },
 
