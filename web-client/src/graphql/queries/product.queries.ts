@@ -79,3 +79,36 @@ query GetMarketplaceProductById($productId: String) {
     purchaseId
   }
 }`;
+
+export const GET_USER_PURCHASED_AND_SOLD_PRODUCTS = gql`
+
+query GetUserProductsWithPurchasedRecords {
+  getUserPurchasedProducts {
+    id
+    createdAt
+    updatedAt
+    title
+    categories
+    description
+    purchasePrice
+    rentPrice
+    rentOption
+    ownerId
+    isSold
+    purchaseId
+  }
+  getUserSoldProducts {
+    id
+    createdAt
+    updatedAt
+    title
+    categories
+    description
+    purchasePrice
+    rentPrice
+    rentOption
+    ownerId
+    isSold
+    purchaseId
+  }
+}`;

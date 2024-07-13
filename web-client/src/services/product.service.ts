@@ -1,6 +1,6 @@
 import apolloClient from "../graphql/client"
 import { CREATE_PRODUCT, DELETE_PRODUCT_BY_ID, PURCHASE_PRODUCT, UPDATE_PRODUCT } from "../graphql/mutations/product.mutation";
-import { GET_ALL_MARKET_AVAILABLE_PRODUCTS, GET_ALL_USER_PRODUCTS, GET_MARKETPLACE_PRODUCT_BY_ID, GET_USER_PRODUCT_BY_ID } from "../graphql/queries/product.queries"
+import { GET_ALL_MARKET_AVAILABLE_PRODUCTS, GET_ALL_USER_PRODUCTS, GET_MARKETPLACE_PRODUCT_BY_ID, GET_USER_PRODUCT_BY_ID, GET_USER_PURCHASED_AND_SOLD_PRODUCTS } from "../graphql/queries/product.queries"
 import { Product } from "../shared/types/product.types";
 
 export const getAllUserProducts = async () => {
@@ -91,5 +91,18 @@ export const purchaseProduct = async (product: Product) => {
     await apolloClient.clearStore();
 
     return data.updatedProduct && data.newPurchase;
+
+}
+
+export const getUserPurchasedAndSoldProducts = async () => {
+    
+    const { data } = await apolloClient.query({
+        query: GET_USER_PURCHASED_AND_SOLD_PRODUCTS,
+    });
+
+    const purchasedProducts: Product[] = data.getUserPurchasedProducts;
+    const soldProducts: Product[] = data.getUserSoldProducts;
+
+    return { purchasedProducts, soldProducts };
 
 }
