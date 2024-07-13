@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../../shared/types/product.types";
-import { getMarketplaceProductById, purchaseProduct } from "../../services/product.service";
+import { getMarketplaceProductById, purchaseProduct, rentProduct } from "../../services/product.service";
 import { Button, CircularProgress } from "@mui/material";
 import ConfirmationDialog from "../../components/ui/feedback/confirmation.dialog";
 import { RangedDatePickerOnDialog } from "../../components/ui/feedback/ranged-date-picker.dialog";
@@ -13,6 +13,8 @@ export const ProductDetailsPage = () => {
     const [error, setError] = useState('');
     const [purchaseDialogOpen, setPurchaseDialogOpen] = useState(false);
     const [rentDialogOpen, setRentDialogOpen] = useState(false);
+    const [rentFromDate, setRentFromDate] = useState<Date>();
+    const [rentTillDate, setRentTillDate] = useState<Date>();
     
     const { productId } = useParams();
     
@@ -21,9 +23,18 @@ export const ProductDetailsPage = () => {
         await purchaseProduct(product!);
     };
 
-    const handleRentConfirmation = (rentFromDate: Date, rentTillDate: Date) => {
+    const handleRentDateRangeChange = (from: Date, to: Date) => {
+        setRentFromDate(from);
+        setRentTillDate(to);
+    };
+
+    const handleRentConfirmation = () => {
         setRentDialogOpen(false);
-    }
+        if (!product) {
+            return;
+        }
+        rentProduct(product, rentFromDate!, rentTillDate!);
+    };
 
     useEffect(() => {
 
@@ -109,6 +120,7 @@ export const ProductDetailsPage = () => {
                 cancelText="Cancel"
                 onCancel={() => setRentDialogOpen(false)}
                 onConfirm={handleRentConfirmation}
+                onChange={handleRentDateRangeChange}
             />
             <ConfirmationDialog
                 open={purchaseDialogOpen}

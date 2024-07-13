@@ -8,33 +8,24 @@ type RangedDatePickerOnDialogProps = {
     prompt: string;
     cancelText: string;
     confirmText: string;
+    onChange: (from: Date, to: Date) => void;
     onCancel: () => void;
-    onConfirm: (from: Date, to: Date) => void;
+    onConfirm: () => void;
 }
 
-export const RangedDatePickerOnDialog: React.FC<RangedDatePickerOnDialogProps> = ({open, prompt, cancelText, confirmText, onCancel, onConfirm}) => {
+export const RangedDatePickerOnDialog: React.FC<RangedDatePickerOnDialogProps> = ({open, prompt, cancelText, confirmText, onChange, onCancel, onConfirm}) => {
 
-    let fromDate: Date;
-    let toDate: Date;
     const [confirmButtonDisabled, setConfirmButtonDisabled] = useState(true);
 
     const handleOnChange = (value: DateRange | null, _:SyntheticEvent) => {
-
-        if (!value) {
-            setConfirmButtonDisabled(true);
-            return;
-        }
-
-        fromDate = value[0];
-        toDate = value[1];
-
-
         if (!value) {
             setConfirmButtonDisabled(true);
             return;
         }
         
         setConfirmButtonDisabled(false);
+
+        onChange(value[0], value[1]);
     }
 
     const dateRangePicker = (
@@ -50,9 +41,7 @@ export const RangedDatePickerOnDialog: React.FC<RangedDatePickerOnDialogProps> =
             cancelText={cancelText}
             confirmText={confirmText}
             onCancel={onCancel}
-            onConfirm={() => {
-                onConfirm(fromDate, toDate);
-            }}
+            onConfirm={onConfirm}
             confirmButtonDisabled={confirmButtonDisabled}
             dialogContent={dateRangePicker}
         />
