@@ -14,7 +14,7 @@ export const getAuthToken = async (email: string, password: string) => {
 
 }
 
-export const isLoggedIn = () => localStorage.getItem('token') !== null;
+export const isLoggedIn = () => localStorage.getItem('token') !== null; //TODO: need to check token expiry as well
 
 export const logoutUser = async () => {
     localStorage.removeItem('token');
