@@ -74,3 +74,20 @@ mutation PurchaseProduct($sellerId: String!, $productId: String!, $purchasePrice
     }
   }
 }`;
+
+export const RENT_PRODUCT = gql`
+
+mutation RentProduct($offererId: String!, $productId: String!, $toDateAsString: String!, $fromDateAsString: String!, $rentPriceAtTimeOfTransaction: Float!, $rentOptionAtTimeOfTransaction: String!) {
+  rentProduct(offererId: $offererId, productId: $productId, toDateAsString: $toDateAsString, fromDateAsString: $fromDateAsString, rentPriceAtTimeOfTransaction: $rentPriceAtTimeOfTransaction, rentOptionAtTimeOfTransaction: $rentOptionAtTimeOfTransaction) {
+    id
+    createdAt
+    updatedAt
+    rentedFromId
+    rentedToId
+    productId
+    rentTimelineStart
+    rentTimelineEnd
+    rentPriceAtTimeOfTransaction
+    rentOptionAtTimeOfTransaction
+  }
+}`;
