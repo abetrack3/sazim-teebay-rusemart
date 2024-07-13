@@ -4,22 +4,26 @@ import { Product } from "../../shared/types/product.types";
 import { getMarketplaceProductById, purchaseProduct } from "../../services/product.service";
 import { Button, CircularProgress } from "@mui/material";
 import ConfirmationDialog from "../../components/ui/feedback/confirmation.dialog";
+import { RangedDatePickerOnDialog } from "../../components/ui/feedback/ranged-date-picker.dialog";
 
 export const ProductDetailsPage = () => {
 
     const [product, setProduct] = useState<Product>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const [dialogOpen, setDialogOpen] = useState(false);
-    const [dialogPrompt, setDialogPrompt] = useState('');
+    const [purchaseDialogOpen, setPurchaseDialogOpen] = useState(false);
+    const [rentDialogOpen, setRentDialogOpen] = useState(false);
     
     const { productId } = useParams();
     
     const handlePurchaseConfirmation = async () => {
-        console.log('hola');
-        setDialogOpen(false);
+        setPurchaseDialogOpen(false);
         await purchaseProduct(product!);
     };
+
+    const handleRentConfirmation = (rentFromDate: Date, rentTillDate: Date) => {
+        setRentDialogOpen(false);
+    }
 
     useEffect(() => {
 
@@ -72,15 +76,23 @@ export const ProductDetailsPage = () => {
                             <p className="font-normal">{product.description}</p>
                         </div>
                         <div className="flex justify-end gap-4">
-                            <Button variant='contained' type='button' color='primary'>Rent</Button>
+                            <Button
+                                variant='contained'
+                                type='button'
+                                color='primary'
+                                onClick={() => {
+                                    setRentDialogOpen(true);
+                                }}
+                            >
+                                Rent
+                            </Button>
                             {product.isSold === false &&
                             <Button
                                 variant='contained'
                                 type='button'
                                 color='primary'
                                 onClick={() => {
-                                    setDialogPrompt('Are you sure you want to buy this product?');
-                                    setDialogOpen(true);
+                                    setPurchaseDialogOpen(true);
                                 }}
                             >
                                 Purchase
@@ -90,12 +102,20 @@ export const ProductDetailsPage = () => {
                     {!product && <h1 className="m-auto">Failed to fetch data</h1>}
                 </div>
             </div>
+            <RangedDatePickerOnDialog
+                open={rentDialogOpen}
+                prompt="Rental Period"
+                confirmText="Confirm"
+                cancelText="Cancel"
+                onCancel={() => setRentDialogOpen(false)}
+                onConfirm={handleRentConfirmation}
+            />
             <ConfirmationDialog
-                open={dialogOpen}
+                open={purchaseDialogOpen}
                 cancelText="Cancel"
                 confirmText="Confirm"
-                onCancel={() => setDialogOpen(false)}
-                prompt={dialogPrompt}
+                onCancel={() => setPurchaseDialogOpen(false)}
+                prompt={'Are you sure you want to buy this product?'}
                 onConfirm={handlePurchaseConfirmation}
             />
         </>
