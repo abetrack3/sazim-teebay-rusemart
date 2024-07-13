@@ -11,13 +11,13 @@ import RequireAuth from "./components/auth/require-auth";
 import { ProductDetailsPage } from "./pages/marketplace/product-details";
 
 const routes: RouteObject[] = [
+	{ path: 'login', element: <LoginPage /> },
+	{ path: 'signup', element: <SignupPage /> },
 	{
 		path: "/",
 		element: <App />,
 		children: [
 			{ index: true, element: <HomePage /> },
-			{ path: 'login', element: <LoginPage /> },
-			{ path: 'signup', element: <SignupPage /> },
 			{ path: 'product/:productId', element: <ProductDetailsPage /> },
             { path: 'my-product', element: <RequireAuth> <MyProduct /> </RequireAuth>},
 			{ path: 'my-product/create', element: <RequireAuth> <CreateProductPage /> </RequireAuth>},
