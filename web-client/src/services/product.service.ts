@@ -61,6 +61,8 @@ export const updateProduct = async (product: Product) => {
         variables: { ...product }
     });
 
+    await apolloClient.resetStore();
+
     return data.updateProduct as Product;
 
 }
