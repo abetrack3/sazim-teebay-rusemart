@@ -9,11 +9,16 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { RouterProvider } from 'react-router-dom'
 import router from './routes.tsx'
+import 'rsuite/dist/rsuite.min.css';  // or 'rsuite/styles/index.less';
+import { CustomProvider } from 'rsuite'
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<ApolloProvider client={apolloClient}>
-			<RouterProvider router={router} />
+			<CustomProvider theme='light'>
+				<RouterProvider router={router} />
+			</CustomProvider>
 		</ApolloProvider>
 	</React.StrictMode>,
 )
