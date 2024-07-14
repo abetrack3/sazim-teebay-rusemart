@@ -68,7 +68,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, actionsEnabled, call
                             </IconButton>
                         </CardActions>}
                     </div>}
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography variant="h5" color="textSecondary">
                         Title: {product.title}
                     </Typography>
                     <Typography variant="body2" color="textSecondary">
@@ -77,8 +77,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, actionsEnabled, call
                     <Typography variant="body2" color="textSecondary">
                         Purchase Price: ${product.purchasePrice} | Rent Price: ${product.rentPrice}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                        Description: {product.description}
+                    <Typography variant="body2">
+                        {product.description}
                     </Typography>
                 </CardContent>
             </div>
