@@ -24,16 +24,23 @@ const authLink = setContext((_, { headers }) => {
 	}
 });
 
+const apolloClient = new ApolloClient({
+	cache: new InMemoryCache(),
+});
+
 const logoutLink = onError(({ networkError }) => {
 	if (networkError?.message === 'User is not authenticated') {
 		localStorage.removeItem('token');
+		apolloClient.resetStore();
 		window.location.href='/login';
 	}
 })
 
-const apolloClient = new ApolloClient({
-	link: authLink.concat(httpLink).concat(logoutLink),
-	cache: new InMemoryCache(),
-});
+// const apolloClient = new ApolloClient({
+// 	link: authLink.concat(httpLink).concat(logoutLink),
+// 	cache: new InMemoryCache(),
+// });
+
+apolloClient.setLink(authLink.concat(httpLink).concat(logoutLink));
 
 export default apolloClient;
