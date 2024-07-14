@@ -70,7 +70,7 @@ model ProductRentals {
     rentedFrom                    User     @relation("Borrowed", fields: [rentedFromId], references: [id])
     rentedToId                    String   @db.Uuid
     rentedTo                      User     @relation("Offered", fields: [rentedToId], references: [id])
-    productId                     String   @unique @db.Uuid
+    productId                     String   @db.Uuid
     product                       Product  @relation(fields: [productId], references: [id])
     rentTimelineStart             DateTime
     rentTimelineEnd               DateTime
