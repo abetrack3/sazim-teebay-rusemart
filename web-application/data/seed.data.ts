@@ -1,6 +1,6 @@
 import { Decimal } from "@prisma/client/runtime/library";
 
-export const seedUser = [
+export const seedUsers = [
     {
         id: "d4d0e400-8eba-453c-8a29-1803a0d48cbe",
         email: 'a@a.com',
@@ -12,22 +12,102 @@ export const seedUser = [
     {
         id: "d4d0e400-8eba-453c-8a29-d48cbe1803a0",
         email: 'q@q.com',
-        firstName: 'John',
-        lastName: 'Doe',
+        firstName: 'Tom',
+        lastName: 'Cruise',
         address: 'Do not want to share',
         password: 'aaa',
     },
+    {
+        id: "fae04ec0-7aba-453b-8a3a-1703b0c48dbe",
+        email: 'jane@doe.com',
+        firstName: 'Jane',
+        lastName: 'Doe',
+        address: '123 Main St',
+        password: 'bbb',
+    },
+    {
+        id: "fbf04ec0-7aba-453b-8a3a-1703b0c48dbf",
+        email: 'brad@pitt.com',
+        firstName: 'Brad',
+        lastName: 'Pitt',
+        address: '456 Elm St',
+        password: 'ccc',
+    },
+    {
+        id: "fcf04ec0-7aba-453b-8a3a-1703b0c48dbf",
+        email: 'angelina@jolie.com',
+        firstName: 'Angelina',
+        lastName: 'Jolie',
+        address: '789 Oak St',
+        password: 'ddd',
+    }
 ];
 
-export const seedProduct = {
-    id: "18843727-29bd-4b18-96d3-b3d11c56bc39",
-    categories: ['Toys'],
-    description: 'cannot be described',
-    title: 'bull dog',
-    purchasePrice: new Decimal(23.0),
-    rentOption: "Per Day",
-    rentPrice: new Decimal(33.0),
-    ownerId: "d4d0e400-8eba-453c-8a29-1803a0d48cbe",
-    isSold: false,
-}
-
+export const seedProducts = [
+    {
+        id: "18843727-29bd-4b18-96d3-b3d11c56bc39",
+        categories: ['Toys'],
+        description: 'cannot be described',
+        title: 'bull dog',
+        purchasePrice: new Decimal(23.0),
+        rentOption: "Per Day",
+        rentPrice: new Decimal(33.0),
+        ownerId: "d4d0e400-8eba-453c-8a29-1803a0d48cbe",
+        isSold: false,
+    },
+    {
+        id: "28843727-29bd-4b18-96d3-b3d11c56bc40",
+        categories: ['Electronics'],
+        description: 'Latest smartphone with high-end features',
+        title: 'Smartphone Pro Max',
+        purchasePrice: new Decimal(999.99),
+        rentOption: "Per Day",
+        rentPrice: new Decimal(49.99),
+        ownerId: "d4d0e400-8eba-453c-8a29-d48cbe1803a0",
+        isSold: false,
+    },
+    {
+        id: "38843727-29bd-4b18-96d3-b3d11c56bc41",
+        categories: ['Furniture'],
+        description: 'Comfortable and stylish leather sofa',
+        title: 'Leather Sofa',
+        purchasePrice: new Decimal(550.0),
+        rentOption: "Per Hour",
+        rentPrice: new Decimal(15.0),
+        ownerId: "fae04ec0-7aba-453b-8a3a-1703b0c48dbe",
+        isSold: false,
+    },
+    {
+        id: "48843727-29bd-4b18-96d3-b3d11c56bc42",
+        categories: ['Home Appliances'],
+        description: 'Energy-efficient washing machine',
+        title: 'Washing Machine',
+        purchasePrice: new Decimal(400.0),
+        rentOption: "Per Day",
+        rentPrice: new Decimal(25.0),
+        ownerId: "fbf04ec0-7aba-453b-8a3a-1703b0c48dbf",
+        isSold: false,
+    },
+    {
+        id: "58843727-29bd-4b18-96d3-b3d11c56bc43",
+        categories: ['Sporting Goods'],
+        description: 'High-quality mountain bike',
+        title: 'Mountain Bike',
+        purchasePrice: new Decimal(750.0),
+        rentOption: "Per Hour",
+        rentPrice: new Decimal(20.0),
+        ownerId: "fcf04ec0-7aba-453b-8a3a-1703b0c48dbf",
+        isSold: false,
+    },
+    {
+        id: "68843727-29bd-4b18-96d3-b3d11c56bc44",
+        categories: ['Outdoor'],
+        description: 'Sturdy and reliable camping tent',
+        title: 'Camping Tent',
+        purchasePrice: new Decimal(120.0),
+        rentOption: "Per Day",
+        rentPrice: new Decimal(10.0),
+        ownerId: "d4d0e400-8eba-453c-8a29-1803a0d48cbe",
+        isSold: false,
+    }
+];

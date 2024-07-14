@@ -1,14 +1,14 @@
-import { seedProduct } from './../data/seed.data';
+import { seedProducts } from './../data/seed.data';
 import { PrismaClient } from "@prisma/client";
-import { seedUser } from "../data/seed.data";
+import { seedUsers } from "../data/seed.data";
 
 const prisma: PrismaClient = new PrismaClient();
 
 const main = async () => {
 
-    await prisma.user.createMany({ data: seedUser });
+    await prisma.user.createMany({ data: seedUsers });
 
-    await prisma.product.create({ data: { ...seedProduct }});
+    await prisma.product.createMany({ data: seedProducts });
 }
 
 main()
