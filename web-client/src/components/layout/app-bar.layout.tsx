@@ -9,7 +9,7 @@ export const TopNavBar = () => {
 
     return (
         <>
-            <AppBar position="sticky" color="transparent">
+            <AppBar position="sticky" color="default">
                 <Toolbar>
                     <div className="w-full grid grid-cols-5">
                         <div className="flex justify-center gap-4 col-start-2 col-span-3">
