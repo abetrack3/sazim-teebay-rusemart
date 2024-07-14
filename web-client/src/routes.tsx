@@ -19,10 +19,10 @@ const routes: RouteObject[] = [
 		element: <App />,
 		children: [
 			{ index: true, element: <HomePage /> },
-			{ path: 'product/:productId', element: <ProductDetailsPage /> },
             { path: 'my-product', element: <RequireAuth> <MyProduct /> </RequireAuth>},
 			{ path: 'my-product/create', element: <RequireAuth> <CreateProductPage /> </RequireAuth>},
 			{ path: 'my-product/edit/:productId', element: <RequireAuth> <EditProductPage /> </RequireAuth>},
+			{ path: 'product/:productId', element: <RequireAuth> <ProductDetailsPage /> </RequireAuth> },
 			{ path: 'my-activity', element: <RequireAuth> <MyActivityPage /> </RequireAuth> },
 			{ path: "*", element: <Error404Page /> },
 		],
