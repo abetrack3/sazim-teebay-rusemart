@@ -11,7 +11,7 @@ const SignupPage = () => {
                 component='section'
                 borderRadius={2}
                 border={2}
-                minWidth={3 / 5}
+                minWidth={2/7}
                 px={8}
                 py={6}
             >
