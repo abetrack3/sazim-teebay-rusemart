@@ -1,4 +1,4 @@
-import * as jwt from 'jsonwebtoken';
+import { jwtVerify, SignJWT } from 'jose';
 import { getUserByEmail } from "./user.service";
 
 export const getAuthToken = async (email: string, password: string) => {
@@ -13,19 +13,24 @@ export const getAuthToken = async (email: string, password: string) => {
         return null;
     }
 
-    const secretKey: string = process.env.AUTH_TOKEN_SECRET_KEY!;
+    const secretKey = new TextEncoder().encode(process.env.AUTH_TOKEN_SECRET_KEY!);
     const authTokenLifespan = process.env.AUTH_TOKEN_LIFESPAN!;
 
-    const token = jwt.sign({...user, password: null}, secretKey, { expiresIn: authTokenLifespan });
+    const token = await new SignJWT({...user, password: null})
+        .setProtectedHeader({ alg: 'HS256' })
+        .setIssuedAt()
+        .setExpirationTime(authTokenLifespan)
+        .sign(secretKey);
 
     return token;
 
 };
 
-export const verifyToken = (token: string) => {
+export const verifyToken = async (token: string) => {
 
     try {
-        jwt.verify(token, process.env.AUTH_TOKEN_SECRET_KEY!);
+        const secretKey = new TextEncoder().encode(process.env.AUTH_TOKEN_SECRET_KEY!);
+        await jwtVerify(token, secretKey);
         return true;
     } catch (error) {
         console.log(error);

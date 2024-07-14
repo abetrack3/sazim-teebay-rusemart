@@ -1,12 +1,12 @@
 import { User } from "@prisma/client";
 import { Request } from "express";
 import { verifyToken } from '../services/auth.service';
-import * as jwt from "jsonwebtoken";
 import { ApplicationContext } from "../common/model";
 import { GraphQLError } from "graphql";
 import { MonoFunction } from "../common/types";
+import { decodeJwt } from "jose";
 
-export const authMiddleware = (request: Request): ApplicationContext => {
+export const authMiddleware = async (request: Request): Promise<ApplicationContext> => {
 
     const token = (request.headers.token || '') as string;
                 
@@ -14,9 +14,9 @@ export const authMiddleware = (request: Request): ApplicationContext => {
         return { authenticatedUser: undefined };
     }
 
-    const verified = verifyToken(token);
+    const verified = await verifyToken(token);
     if (verified === false) {
-        throw new GraphQLError('User is not authenticated', {
+        throw new GraphQLError('User is not authenticated', {   
             extensions: {
                 code: 'Unautheticated',
                 http: { status: 401 },
@@ -24,7 +24,7 @@ export const authMiddleware = (request: Request): ApplicationContext => {
         });
     }
 
-    const authenticatedUser: User = jwt.decode(token) as User;
+    const authenticatedUser: User = decodeJwt(token) as User;
     return { authenticatedUser };                
 
 };
