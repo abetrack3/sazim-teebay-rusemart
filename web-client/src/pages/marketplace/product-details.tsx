@@ -5,6 +5,7 @@ import { getMarketplaceProductById, purchaseProduct, rentProduct } from "../../s
 import { Button, CircularProgress } from "@mui/material";
 import ConfirmationDialog from "../../components/ui/feedback/confirmation.dialog";
 import { RangedDatePickerOnDialog } from "../../components/ui/feedback/ranged-date-picker.dialog";
+import { getLoggedInUserId } from "../../services/auth.service";
 
 export const ProductDetailsPage = () => {
 
@@ -17,6 +18,8 @@ export const ProductDetailsPage = () => {
     const [rentTillDate, setRentTillDate] = useState<Date>();
     
     const { productId } = useParams();
+
+    const loggedInUserId = getLoggedInUserId();
     
     const handlePurchaseConfirmation = async () => {
         setPurchaseDialogOpen(false);
@@ -87,6 +90,7 @@ export const ProductDetailsPage = () => {
                             <p className="font-normal">{product.description}</p>
                         </div>
                         <div className="flex justify-end gap-4">
+                            {(product.ownerId !== loggedInUserId) &&
                             <Button
                                 variant='contained'
                                 type='button'
@@ -96,8 +100,8 @@ export const ProductDetailsPage = () => {
                                 }}
                             >
                                 Rent
-                            </Button>
-                            {product.isSold === false &&
+                            </Button>}
+                            {(product.isSold === false && product.ownerId !== loggedInUserId) &&
                             <Button
                                 variant='contained'
                                 type='button'
