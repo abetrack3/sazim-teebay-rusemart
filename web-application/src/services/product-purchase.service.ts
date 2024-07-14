@@ -9,7 +9,6 @@ type PurchaseProductHandlerType = (buyerId: string, purchaseParams: ProductPurch
 
 export const purchaseProduct: PurchaseProductHandlerType = async (buyerId, {
     sellerId,
-    // buyerId,
     productId,
     purchasePriceAtTimeOfTransaction,
     rentOptionAtTimeOfTransaction,
