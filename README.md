@@ -97,7 +97,7 @@ Ensure you have the following installed:
 ## Recalling some challenges faced during this assessment
 - At the beginning of the assessment I was really confused about what is the role GraphQL and Prisma -- Thanks to this assessment I have come to understand a little bit more than before
 - Material UI does not have its own ranged date picker (at least not free) so had to use the said component from a third party library called rsuite.
-- The library called jsonwebtoken that was initially used for auth-token signing and verifying was not working in the client side due to some ESM or ES6 issues, but it was needed to decode the auth-token. Resolution? switched to jose.
+- The library called jsonwebtoken that was initially used for auth-token signing and verifying was not working in the client side due to some ESM or ES6 issues, but it was needed to decode the auth-token. Resolution? switched to jose in both backend and client side.
 
 -----------
 
