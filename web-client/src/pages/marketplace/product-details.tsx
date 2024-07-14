@@ -84,7 +84,7 @@ export const ProductDetailsPage = () => {
                 <div className="w-2/5 flex flex-col min-h-[60vh] justify-between">
                     {product && <>
                         <div className="flex flex-col gap-4">
-                            <h1 className="text-5xl mb-2">Hola!</h1>
+                            <h1 className="text-5xl mb-2">{product.title}</h1>
                             <p className="font-medium">Categories: {product.categories.join(', ')}</p>
                             <p className="font-medium">Price: ${product.purchasePrice}</p>
                             <p className="font-normal">{product.description}</p>
