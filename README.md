@@ -68,28 +68,36 @@ Ensure you have the following installed:
 
 ## Part 1: Preliminary features
 - User sign up and login using jwt token
+- auto logout on token expiry (detected on the first request after expiry, redirected to login page)
 
 ## Part 2: Implementation Details
 - Successfully implemented multi step based form to create products, this involved creating multiple resuable components (however, there is still a lot of rooms for improvement here)
 - Users can delete their own products
+- Users can edit their own products
+- Organized the codebase such that both the product edit form and multi-step based create form reuses several components
 - Both frontend and backend private apis are secured with jwt token
 
 ## Part 3: Rent and Buy/sell
 - Implemented marketplace that displays all products created by all users
 - This is also the homepage
-- Both my-product and marketplace resues the same component: ProductCard component
+- My Products page displays all the products you have created
+- Both my-product and marketplace resues the same component: ProductList and ProductCard component
+- User can purchase or rent a product
+- It was ensured that a user cannot buy/rent his own products (action buttons would disappear on the client side, and safety checks are also implemented on the backend as well)
+- Time overlap cases are also handled in case of product rent
 
 ## Scope for improvements, unhandled corner/error cases
 - password could hashed before storing in db
 - renew jwt token before expiry to avoid sudden logout
-- Create component ProductList to introduce more code reusability
-- Error message should be displayed of only the current step
+- [DONE] Create component ProductList to introduce more code reusability
+- [DONE] Error message should be displayed of only the current step
+- A Product should not be allowed to be purchased if it is being currently rented or scheduled for rent in the future
 - Optimize client side caching
 
-## Works that remains
-- Edit product
-- Buy/Rent products
-- Display user's product history
+## Recalling some challenges faced during this assessment
+- At the beginning of the assessment I was really confused about what is the role GraphQL and Prisma -- Thanks to this assessment I have come to understand a little bit more than before
+- Material UI does not have its own ranged date picker (at least not free) so had to use the said component from a third party library called rsuite.
+- The library called jsonwebtoken that was initially used for auth-token signing and verifying was not working in the client side due to some ESM or ES6 issues, but it was needed to decode the auth-token. Resolution? switched to jose.
 
 -----------
 
