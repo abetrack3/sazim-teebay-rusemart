@@ -1,5 +1,6 @@
 import apolloClient from "../graphql/client"
 import GET_AUTH_TOKEN from "../graphql/mutations/auth.mutations"
+import { getDecodedToken } from "../utils/jwt.utils";
 
 export const getAuthToken = async (email: string, password: string) => {
 
@@ -22,3 +23,12 @@ export const logoutUser = async () => {
     localStorage.removeItem('token');
     await apolloClient.resetStore();
 };
+
+export const getLoggedInUserId = () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        return null;
+    }
+    const decoded = getDecodedToken(token);
+    return decoded?.id;
+}
