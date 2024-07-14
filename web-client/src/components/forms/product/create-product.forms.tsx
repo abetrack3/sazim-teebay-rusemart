@@ -53,7 +53,7 @@ const CreateProductForm = () => {
                 onSubmit={e => createProduct(e as unknown as Product)}
                 validationSchema={productFormValidationSchema}
             >
-                {({ isValid }) => (
+                {({ isValid, dirty }) => (
                     <Form>
 
                         <Stepper activeStep={currentStepIndex}>
@@ -80,7 +80,7 @@ const CreateProductForm = () => {
                                 </Button>
 
                                 {isLastStep ? (
-                                    <Button type={'submit'} disabled={!isValid} variant="contained">
+                                    <Button type={'submit'} disabled={!isValid || !dirty} variant="contained">
                                         {'Submit'}
                                     </Button>
                                 ) : (
