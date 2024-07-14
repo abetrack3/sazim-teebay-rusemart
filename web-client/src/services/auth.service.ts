@@ -10,6 +10,8 @@ export const getAuthToken = async (email: string, password: string) => {
 
     const token: string = data.authToken ?? '';
 
+    await apolloClient.resetStore();
+
     return token;
 
 }
