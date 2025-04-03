@@ -1,0 +1,26 @@
+# Node modules
+node_modules
+npm-debug.log
+dist
+
+# Build output
+build
+
+
+# Logs
+*.log
+
+# Git files
+.git
+.gitignore
+
+# Editor and system files
+.DS_Store
+.vscode
+.idea
+*.swp
+*.swo
+
+# Testing
+coverage
+*.test.js
